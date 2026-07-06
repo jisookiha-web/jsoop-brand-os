@@ -1,0 +1,2560 @@
+<!DOCTYPE html>
+<!-- saved from url=(0057)file:///C:/Users/jsoop/Downloads/JSOOP_Brand_OS_v8_2.html -->
+<html lang="ko"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>2026 브랜드전략본부 OS v8</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap');
+:root{
+  --bg:#08090d;--panel:#11131a;--panel2:#171a23;--panel3:#202430;
+  --line:rgba(255,255,255,.1);--line2:rgba(255,255,255,.18);
+  --text:#f4f0e9;--sub:#a7a19a;--muted:#69645f;
+  --brand:#68a1ff;--prod:#53df9b;--sales:#ffb34e;--cont:#c996ff;
+  --ok:#53df9b;--warn:#ffb34e;--bad:#ff6b74;
+  --jsoop:#63c987;--anto:#f2bd48;
+  --r:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:linear-gradient(180deg,#090a0f,#07080c);font-family:'Noto Sans KR',sans-serif;color:var(--text);font-size:14px;line-height:1.5;min-width:1440px}
+button{font-family:inherit;color:inherit;cursor:pointer;border:none;background:none}
+
+/* ── Layout ── */
+.app{display:grid;grid-template-columns:240px 1fr 300px;min-height:100vh}
+
+/* ── Sidebar ── */
+.side{position:sticky;top:0;height:100vh;background:rgba(10,12,18,.92);backdrop-filter:blur(14px);border-right:1px solid var(--line);padding:18px 14px;display:flex;flex-direction:column;gap:13px;overflow-y:auto}
+.logo{display:flex;align-items:center;gap:9px}
+.logo-mark{width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,var(--brand),var(--cont));flex-shrink:0}
+.logo h1{font-size:13px;font-weight:900;line-height:1.2}
+.logo p{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:.1em;margin-top:1px}
+.side-sec{background:var(--panel2);border:1px solid var(--line);border-radius:13px;padding:12px}
+.side-label{font-size:10px;color:var(--muted);font-weight:900;letter-spacing:.13em;text-transform:uppercase;margin-bottom:7px;display:block}
+.side-q{display:flex;flex-direction:column;gap:4px}
+.sq{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--sub);padding:5px 7px;border-radius:8px;cursor:pointer;border:1px solid transparent;transition:.12s}
+.sq.now{color:var(--warn);background:rgba(255,179,78,.08);border-color:rgba(255,179,78,.25)}
+.sq.done{color:var(--ok)}
+.sq i{width:6px;height:6px;border-radius:50%;background:currentColor;flex-shrink:0}
+.legend{margin-top:auto;background:var(--panel2);border:1px solid var(--line);border-radius:13px;padding:12px}
+.leg-row{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--sub);margin-top:5px}
+.dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+
+/* ── Main ── */
+.main{padding:20px 20px 48px;overflow:hidden}
+
+/* ── Dept Header ── */
+.dept-hd{background:linear-gradient(135deg,rgba(104,161,255,.15),rgba(201,150,255,.08));border:1px solid rgba(255,255,255,.15);border-radius:20px;padding:20px 24px;margin-bottom:14px}
+.dept-top{display:flex;justify-content:space-between;align-items:start;margin-bottom:16px}
+.dept-title h2{font-size:20px;font-weight:900;letter-spacing:-.03em}
+.dept-title p{font-size:12px;color:var(--muted);margin-top:3px}
+.dept-chips{display:flex;gap:6px}
+.dchip{background:rgba(255,255,255,.07);border:1px solid var(--line);border-radius:999px;padding:5px 11px;font-size:11px;color:var(--sub);font-weight:800}
+.dchip.now{background:rgba(255,179,78,.15);border-color:rgba(255,179,78,.35);color:var(--warn)}
+
+/* ── Org Chart ── */
+.org-wrap{overflow-x:auto}
+.org-chart{display:flex;flex-direction:column;align-items:center;gap:0}
+.org-row{display:flex;align-items:stretch;gap:0;justify-content:center}
+.org-root{background:linear-gradient(135deg,var(--brand),var(--cont));border-radius:10px;padding:8px 18px;font-size:13px;font-weight:900;color:#fff;text-align:center;white-space:nowrap}
+.org-vert{width:1px;height:14px;background:rgba(255,255,255,.25);margin:0 auto}
+.org-dept-wrap{display:flex;flex-direction:column;align-items:center}
+.org-dept{background:rgba(104,161,255,.15);border:1px solid rgba(104,161,255,.35);border-radius:10px;padding:7px 16px;font-size:12px;font-weight:900;color:var(--brand);white-space:nowrap}
+.org-hz{display:flex;align-items:flex-start;justify-content:center;gap:0;position:relative;padding-top:13px}
+.org-hz::before{content:'';position:absolute;top:0;left:calc(50% - (100% - 48px)/2);right:calc(50% - (100% - 48px)/2);height:1px;background:rgba(255,255,255,.18)}
+.org-team-col{display:flex;flex-direction:column;align-items:center;padding:0 10px}
+.org-team-col::before{content:'';width:1px;height:13px;background:rgba(255,255,255,.18);margin-bottom:0}
+.org-team{background:var(--panel2);border:1px solid var(--line);border-radius:9px;padding:7px 12px;text-align:center;min-width:90px}
+.org-team b{font-size:12px;font-weight:900;display:block}
+.org-team span{font-size:10px;color:var(--muted);display:block;margin-top:3px;line-height:1.4}
+.org-brand-col{display:flex;flex-direction:column;align-items:center;padding:0 18px}
+.org-brand{border-radius:10px;padding:8px 24px;font-size:13px;font-weight:900;text-align:center;letter-spacing:.5px;white-space:nowrap}
+.jsoop-brand{background:rgba(99,201,135,.15);border:1.5px solid rgba(99,201,135,.45);color:#63c987}
+.anto-brand{background:rgba(242,189,72,.15);border:1.5px solid rgba(242,189,72,.45);color:#f2bd48}
+.org-strat-col{display:flex;flex-direction:column;align-items:center;padding:0 8px}
+.org-strat-col::before{content:'';width:1px;height:13px;background:rgba(255,255,255,.18);margin-bottom:0}
+.org-strat{background:var(--panel2);border:1px solid var(--line);border-radius:9px;padding:6px 12px;font-size:11px;font-weight:700;color:var(--fg);white-space:nowrap;text-align:center}
+
+/* ── Brand Switcher ── */
+.brand-sw{display:flex;align-items:center;justify-content:space-between;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:6px;margin-bottom:14px;position:sticky;top:8px;z-index:10;backdrop-filter:blur(12px)}
+.bs-tabs{display:flex;gap:4px}
+.bs-btn{border:1px solid transparent;border-radius:10px;padding:8px 18px;font-size:14px;font-weight:900;color:var(--sub);transition:.15s}
+.bs-btn.active.jsoop{background:rgba(99,201,135,.18);border-color:rgba(99,201,135,.4);color:var(--jsoop)}
+.bs-btn.active.anto{background:rgba(242,189,72,.18);border-color:rgba(242,189,72,.4);color:var(--anto)}
+.bs-btn:not(.active):hover{background:rgba(255,255,255,.06);color:var(--text)}
+.bs-info{display:flex;gap:8px;align-items:center}
+.bsi{font-size:11px;font-weight:900;background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:7px;padding:3px 8px;color:var(--sub)}
+
+/* ── Section ── */
+.sec{margin-bottom:14px}
+.sec-hd{display:flex;align-items:end;justify-content:space-between;margin-bottom:9px}
+.sec-hd h3{font-size:14px;font-weight:900}
+.sec-hd p{font-size:12px;color:var(--muted)}
+
+/* ── Brand Overview ── */
+.brand-ov{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:20px}
+.ov-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:18px;align-items:start}
+.ov-premise{display:flex;flex-direction:column;gap:10px}
+.premise-tag{font-size:10px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.premise-name{font-size:24px;font-weight:900;letter-spacing:-.04em}
+.premise-text{font-size:13px;color:var(--sub);line-height:1.7;background:var(--panel2);border-left:3px solid;border-radius:0 10px 10px 0;padding:10px 13px}
+.sum-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.sum-card{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:12px}
+.sum-card b{font-size:22px;font-weight:900;display:block;line-height:1}
+.sum-card span{font-size:11px;font-weight:700;display:block;margin-top:6px}
+.sum-card small{font-size:10px;color:var(--muted);display:block;margin-top:3px;line-height:1.45}
+
+/* ── Annual Flow ── */
+.yflow{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}
+.yq{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:13px;position:relative;overflow:hidden;cursor:pointer;transition:.14s}
+.yq.now-q{border-color:rgba(255,179,78,.5);box-shadow:0 0 20px rgba(255,179,78,.1)}
+.yq.done-q{opacity:.85}
+.yq::after{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--qc)}
+.yq-label{display:flex;align-items:center;justify-content:space-between;margin-bottom:7px}
+.yq-label b{font-size:14px;padding-left:8px}
+.yq-badge{font-size:10px;font-weight:900;padding:3px 8px;border-radius:999px;color:#0a0a0a}
+.yq-title{font-size:14px;font-weight:900;margin-bottom:5px;padding-left:8px}
+.yq-items{padding-left:8px}
+.yq-items div{font-size:11px;color:var(--sub);margin-top:3px}
+
+/* ── Strategy Matrix ── */
+.mat-wrap{background:var(--panel);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.mat-grid{display:grid;grid-template-columns:140px repeat(4,1fr)}
+.mh{background:var(--panel2);border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px;font-size:11px;font-weight:900;color:var(--muted);text-align:center}
+.mh.now-h{color:var(--warn);background:rgba(255,179,78,.07)}
+.ms{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 11px;display:flex;align-items:center;gap:7px;font-weight:900;font-size:12px}
+.ms i{width:5px;height:28px;border-radius:99px;background:var(--ac);flex-shrink:0}
+.mc{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px;cursor:pointer;transition:.13s;background:rgba(255,255,255,.01);min-height:72px}
+.mc:hover{background:rgba(255,255,255,.05)}
+.mc.sel{background:rgba(255,255,255,.08);box-shadow:inset 0 0 0 2px rgba(255,255,255,.18)}
+.mc b{font-size:11px;line-height:1.3;display:block}
+.mc p{font-size:10px;color:var(--sub);margin-top:3px;line-height:1.4}
+.mc-tags{display:flex;gap:3px;flex-wrap:wrap;margin-top:6px}
+.mtag{font-size:10px;font-weight:900;border:1px solid var(--line);background:var(--panel3);color:var(--sub);padding:1px 5px;border-radius:5px}
+.mtag.done{background:rgba(83,223,155,.14);color:var(--ok);border-color:rgba(83,223,155,.28)}
+.mtag.doing{background:rgba(255,179,78,.14);color:var(--warn);border-color:rgba(255,179,78,.28)}
+.mtag.now{background:rgba(255,179,78,.2);color:var(--warn);border-color:rgba(255,179,78,.4);font-size:9px}
+
+/* ── Detail ── */
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:15px}
+.panel-hd{display:flex;justify-content:space-between;align-items:start;margin-bottom:12px;gap:8px}
+.panel-hd h3{font-size:14px;font-weight:900}
+.panel-hd p{font-size:11px;color:var(--muted);margin-top:3px}
+.pct-badge{font-size:13px;font-weight:900;flex-shrink:0}
+.pbar{height:5px;background:var(--panel3);border-radius:99px;overflow:hidden;margin-top:5px}
+.pbar div{height:100%;border-radius:99px;transition:.3s}
+
+/* Tasks */
+.tg{border-top:1px solid var(--line);padding:9px 0}
+.tg:first-of-type{border-top:0;padding-top:0}
+.tg-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.tg-hd b{font-size:12px}
+.common-tag{font-size:9px;font-weight:900;background:rgba(104,161,255,.15);color:var(--brand);padding:2px 6px;border-radius:4px;margin-left:5px}
+.task{display:grid;grid-template-columns:15px 1fr auto;gap:6px;align-items:start;padding:6px 7px;border-radius:8px;background:rgba(255,255,255,.03);margin-top:4px}
+.ck{width:14px;height:14px;border-radius:4px;border:1px solid var(--line2);display:flex;align-items:center;justify-content:center;font-size:8px;color:#111;font-weight:900;flex-shrink:0;margin-top:1px}
+.task.done .ck{background:var(--ok);border-color:var(--ok)}
+.task.doing .ck{background:var(--warn);border-color:var(--warn)}
+.task.todo .ck{background:var(--panel3)}
+.t-name{font-size:11px;line-height:1.4}
+.t-sub{font-size:10px;color:var(--muted);margin-top:1px;line-height:1.4}
+.t-part{font-size:10px;color:var(--sub);background:var(--panel3);border:1px solid var(--line);padding:1px 5px;border-radius:5px;white-space:nowrap;flex-shrink:0}
+.acc-hd{display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:7px 9px;border-radius:8px;background:rgba(255,255,255,.04);border:1px solid transparent;transition:.12s;user-select:none}
+.acc-hd:hover,.acc-hd.open{background:rgba(255,255,255,.07);border-color:var(--line)}
+.acc-arrow{font-size:9px;color:var(--muted);transition:transform .18s;display:inline-block}
+.acc-hd.open .acc-arrow{transform:rotate(90deg)}
+.acc-body{display:none}.acc-body.open{display:block}
+.tbadge{font-size:9px;font-weight:900;padding:2px 5px;border-radius:4px;white-space:nowrap}
+.tbadge.done{background:rgba(83,223,155,.2);color:var(--ok)}
+.tbadge.doing{background:rgba(255,179,78,.2);color:var(--warn)}
+.tbadge.todo{background:var(--panel3);color:var(--sub)}
+
+/* Review */
+.rv-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.rv-card{background:var(--panel2);border:1px solid var(--line);border-radius:11px;padding:11px}
+.rv-card.wide{grid-column:span 2}
+.rv-card.good{border-color:rgba(83,223,155,.2)}
+.rv-card.imp{border-color:rgba(255,107,116,.2)}
+.rv-card.carry{border-color:rgba(104,161,255,.2)}
+.rv-card h4{font-size:11px;font-weight:900;margin-bottom:6px;color:var(--muted)}
+.rv-card p{font-size:12px;line-height:1.6;color:var(--sub)}
+.rv-card ul{list-style:none;padding:0}
+.rv-card ul li{font-size:11px;color:var(--sub);padding:3px 0;border-bottom:1px solid var(--line);line-height:1.45}
+.rv-card ul li:last-child{border-bottom:0}
+.kpi-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--line);font-size:12px}
+.kpi-row:last-child{border-bottom:0}
+.kpi-row b{color:var(--sub)}
+.kpi-row span{font-weight:900}
+.qd-now-badge{display:inline-block;background:rgba(255,179,78,.18);border:1px solid rgba(255,179,78,.4);color:var(--warn);font-size:10px;font-weight:900;padding:3px 9px;border-radius:999px;margin-bottom:10px}
+.todo-box{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:10px;font-size:12px;color:var(--muted);text-align:center;margin-top:8px}
+
+/* Product launch in review */
+.prod-launch{margin-top:10px}
+.prod-launch-hd{font-size:11px;font-weight:900;color:var(--muted);margin-bottom:6px;padding-bottom:5px;border-bottom:1px solid var(--line)}
+.prod-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:5px}
+.prod-item{background:var(--panel3);border:1px solid var(--line);border-radius:8px;padding:7px 9px;display:flex;align-items:center;gap:7px}
+.prod-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.prod-item .pi-name{font-size:11px;font-weight:700;line-height:1.3}
+.prod-item .pi-meta{font-size:10px;color:var(--muted)}
+.prod-none{font-size:11px;color:var(--muted);padding:6px 0}
+
+/* Monthly Tasks */
+.monthly-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+.mt-team{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px}
+.mt-team-hd{display:flex;align-items:center;gap:7px;margin-bottom:10px}
+.mt-team-hd b{font-size:13px;font-weight:900}
+.mt-team-hd span{font-size:10px;font-weight:900;padding:2px 7px;border-radius:6px;background:rgba(255,255,255,.07)}
+.mt-item{display:flex;align-items:start;gap:7px;padding:6px 0;border-bottom:1px solid var(--line);font-size:11px}
+.mt-item:last-child{border-bottom:0}
+.mt-dot{width:6px;height:6px;border-radius:50%;background:var(--tc);flex-shrink:0;margin-top:4px}
+.mt-item span{color:var(--sub);line-height:1.45}
+
+/* ── Right Panel ── */
+.right{position:sticky;top:0;height:100vh;background:rgba(10,12,18,.92);backdrop-filter:blur(14px);border-left:1px solid var(--line);padding:18px 14px;display:flex;flex-direction:column;gap:13px;overflow-y:auto}
+.kpi-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
+.kpi-hd h3{font-size:13px;font-weight:900}
+.kpi-hd span{font-size:11px;color:var(--muted)}
+.r-sec{background:var(--panel2);border:1px solid var(--line);border-radius:13px;padding:12px}
+.r-label{font-size:10px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;display:block}
+.strat-bar{margin-bottom:8px}
+.strat-bar:last-child{margin-bottom:0}
+.sb-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.sb-name{font-size:12px;color:var(--sub)}
+.sb-pct{font-size:13px;font-weight:900}
+.sb-track{height:5px;background:var(--panel3);border-radius:99px;overflow:hidden}
+.sb-fill{height:100%;border-radius:99px;transition:.35s}
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:2px}
+.stat-card{background:var(--panel3);border:1px solid var(--line);border-radius:10px;padding:9px 7px;text-align:center}
+.stat-card b{font-size:20px;font-weight:900;display:block;line-height:1}
+.stat-card span{font-size:10px;color:var(--muted);display:block;margin-top:4px}
+.chk-item{display:flex;align-items:start;gap:8px;padding:7px 0;border-bottom:1px solid var(--line);font-size:11px}
+.chk-item:last-child{border-bottom:0}
+.chk-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:3px}
+.chk-item span{color:var(--sub);line-height:1.5}
+.overall-pct{text-align:center;padding:10px 0}
+.overall-pct b{font-size:36px;font-weight:900;display:block;line-height:1}
+.overall-pct span{font-size:11px;color:var(--muted)}
+
+/* ── Gallery ── */
+.gallery-sec{margin-top:28px}
+.gallery-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.gallery-hd h3{font-size:16px;font-weight:900;letter-spacing:-.03em}
+.gallery-hd p{font-size:11px;color:var(--muted);margin-top:2px}
+.gallery-empty{background:var(--panel2);border:1px dashed var(--line2);border-radius:16px;padding:40px;text-align:center;color:var(--muted);font-size:13px}
+.gallery-empty span{display:block;font-size:32px;margin-bottom:10px;opacity:.4}
+.week-group{margin-bottom:22px}
+.week-label{font-size:11px;font-weight:900;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.week-label::after{content:'';flex:1;height:1px;background:var(--line)}
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}
+.gal-card{background:var(--panel2);border:1px solid var(--line);border-radius:12px;overflow:hidden;cursor:pointer;transition:.15s;position:relative;aspect-ratio:4/3}
+.gal-card:hover{border-color:var(--line2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.gal-card img{width:100%;height:100%;object-fit:cover;display:block;background:var(--panel3)}
+.gal-card .gal-overlay{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.8));padding:10px 10px 8px;opacity:0;transition:.15s}
+.gal-card:hover .gal-overlay{opacity:1}
+.gal-card .gal-title{font-size:11px;font-weight:700;color:#fff;line-height:1.3}
+.gal-card .gal-desc{font-size:10px;color:rgba(255,255,255,.6);margin-top:2px}
+.gal-loading{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--panel3);color:var(--muted);font-size:11px}
+
+/* Lightbox */
+.lb-bg{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px);cursor:pointer}
+.lb-box{background:var(--panel);border:1px solid var(--line2);border-radius:20px;overflow:hidden;max-width:90vw;max-height:90vh;display:flex;flex-direction:column;cursor:default;box-shadow:0 24px 80px rgba(0,0,0,.7)}
+.lb-img-wrap{flex:1;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#000;min-height:200px}
+.lb-img-wrap img{max-width:85vw;max-height:75vh;object-fit:contain;display:block}
+.lb-footer{padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid var(--line)}
+.lb-info h4{font-size:14px;font-weight:800}
+.lb-info p{font-size:11px;color:var(--muted);margin-top:2px}
+.lb-close{background:rgba(255,255,255,.1);border:1px solid var(--line2);border-radius:8px;padding:7px 14px;font-size:12px;color:var(--sub);cursor:pointer;transition:.12s}
+.lb-close:hover{background:rgba(255,255,255,.18);color:var(--text)}
+.lb-nav{display:flex;gap:6px}
+.lb-nav button{background:rgba(255,255,255,.08);border:1px solid var(--line2);border-radius:8px;padding:7px 12px;font-size:14px;cursor:pointer;color:var(--sub);transition:.12s}
+.lb-nav button:hover{background:rgba(255,255,255,.16);color:var(--text)}
+
+
+/* ── Edit Mode ── */
+body { padding-bottom: 56px; }
+.edit-toolbar {
+  position:fixed; bottom:0; left:0; right:0; height:52px;
+  background:rgba(8,9,13,.97); backdrop-filter:blur(14px);
+  border-top:1px solid var(--line2);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 22px; z-index:2000; gap:12px;
+}
+.et-left,.et-right { display:flex; align-items:center; gap:10px; }
+.et-btn {
+  background:rgba(255,255,255,.07); border:1px solid var(--line2);
+  border-radius:9px; padding:7px 15px; font-size:12px; font-weight:700;
+  color:var(--sub); cursor:pointer; transition:.12s; font-family:inherit;
+}
+.et-btn:hover { background:rgba(255,255,255,.14); color:var(--text); }
+.et-btn.et-active { background:rgba(83,223,155,.15); border-color:rgba(83,223,155,.4); color:var(--ok); }
+.et-btn.et-export { color:var(--brand); border-color:rgba(104,161,255,.3); background:rgba(104,161,255,.07); }
+.et-btn.et-export:hover { background:rgba(104,161,255,.15); }
+.et-btn.et-reset { color:var(--bad); border-color:rgba(255,107,116,.25); background:rgba(255,107,116,.05); }
+.et-ind { font-size:11px; color:var(--muted); transition:.3s; }
+.et-divider { width:1px; height:20px; background:var(--line); }
+
+/* Edit mode visual cues on editable fields */
+body.edit-mode .editable {
+  border-bottom:1px dashed rgba(255,255,255,.25);
+  cursor:text; display:inline-block; min-width:8px;
+}
+body.edit-mode .editable:hover { border-bottom-color:rgba(255,255,255,.5); }
+body.edit-mode .editable:focus { border-bottom:1px solid var(--brand); outline:none; }
+body.edit-mode .ck-editable { cursor:pointer !important; transition:transform .1s; }
+body.edit-mode .ck-editable:hover { transform:scale(1.3); color:var(--brand); }
+.edit-del-btn {
+  display:none; background:rgba(255,107,116,.15); border:1px solid rgba(255,107,116,.3);
+  border-radius:5px; padding:2px 7px; font-size:10px; color:var(--bad);
+  cursor:pointer; font-family:inherit; margin-left:6px; flex-shrink:0;
+}
+body.edit-mode .edit-del-btn { display:inline-block; }
+.gal-edit-row { display:none; gap:6px; padding:6px 2px; }
+body.edit-mode .gal-edit-row { display:flex; }
+.gal-add-btn {
+  background:rgba(255,255,255,.06); border:1px dashed var(--line2);
+  border-radius:9px; padding:8px 14px; font-size:11px; color:var(--muted);
+  cursor:pointer; font-family:inherit; transition:.12s; text-align:center; width:100%;
+}
+.gal-add-btn:hover { background:rgba(255,255,255,.12); color:var(--text); border-color:var(--line2); }
+.gal-card-del {
+  display:none; position:absolute; top:6px; right:6px;
+  background:rgba(255,107,116,.85); border:none; border-radius:5px;
+  padding:3px 7px; font-size:11px; color:#fff; cursor:pointer; z-index:2;
+}
+body.edit-mode .gal-card-del { display:block; }
+body.edit-mode .gal-card:hover .gal-card-del { display:block; }
+
+/* Gallery modal */
+.gm-overlay {
+  position:fixed; inset:0; background:rgba(0,0,0,.75);
+  backdrop-filter:blur(6px); z-index:9997;
+  display:flex; align-items:center; justify-content:center; padding:20px;
+}
+.gm-box {
+  background:var(--panel); border:1px solid var(--line2);
+  border-radius:20px; width:440px; max-width:95vw;
+  box-shadow:0 24px 80px rgba(0,0,0,.8); overflow:hidden;
+}
+.gm-hd {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:18px 20px 14px; border-bottom:1px solid var(--line);
+}
+.gm-hd h3 { font-size:15px; font-weight:900; }
+.gm-close {
+  background:rgba(255,255,255,.07); border:1px solid var(--line);
+  border-radius:6px; padding:4px 10px; font-size:12px;
+  color:var(--muted); cursor:pointer; font-family:inherit;
+}
+.gm-body { padding:16px 20px; display:flex; flex-direction:column; gap:12px; }
+.gm-field label { display:block; font-size:11px; color:var(--muted); font-weight:700; letter-spacing:.05em; margin-bottom:5px; }
+.gm-field input {
+  width:100%; background:var(--panel2); border:1px solid var(--line2);
+  border-radius:9px; padding:9px 13px; font-size:13px; color:var(--text);
+  font-family:inherit; outline:none; transition:.12s;
+}
+.gm-field input:focus { border-color:var(--brand); background:var(--panel3); }
+.gm-field input:disabled { opacity:.4; }
+.gm-hint { font-size:10px; color:var(--muted); margin-top:4px; line-height:1.5; }
+.gm-sep {
+  font-size:10px; font-weight:900; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--muted); border-top:1px solid var(--line); padding-top:12px; margin-top:4px;
+}
+.gm-footer {
+  display:flex; justify-content:flex-end; gap:8px;
+  padding:12px 20px 16px; border-top:1px solid var(--line);
+}
+.gm-btn-cancel {
+  background:none; border:1px solid var(--line2); border-radius:8px;
+  padding:8px 16px; font-size:12px; color:var(--muted);
+  cursor:pointer; font-family:inherit; transition:.12s;
+}
+.gm-btn-cancel:hover { background:rgba(255,255,255,.07); }
+.gm-btn-save {
+  background:var(--brand); border:none; border-radius:8px;
+  padding:8px 20px; font-size:12px; font-weight:800;
+  color:#000; cursor:pointer; font-family:inherit; transition:.12s;
+}
+.gm-btn-save:hover { opacity:.85; }
+
+</style>
+<script id="savedOverrides" type="application/json">{}</script>
+</head>
+<body>
+<div class="app">
+
+<!-- ══ SIDEBAR ══ -->
+<aside class="side">
+  <div class="logo">
+    <div class="logo-mark"></div>
+    <div><h1>브랜드전략본부</h1><p>2026 · BRAND OS v6</p></div>
+  </div>
+  <div class="side-sec">
+    <span class="side-label">분기 현황</span>
+    <div class="side-q">
+      <div class="sq done"><i></i>1분기 완료</div>
+      <div class="sq done"><i></i>2분기 완료</div>
+      <div class="sq now"><i></i>3분기 ← 현재</div>
+      <div class="sq"><i></i>4분기 예정</div>
+    </div>
+  </div>
+  <div class="side-sec">
+    <span class="side-label">브랜드 전략 방향</span>
+    <p style="font-size:12px;color:var(--sub);line-height:1.7" id="sidePremmise">신규 서브브랜드와 라인업을 통해 브랜드 성장 파이프라인을 확장하고, 채널별 영업활동 지원을 병행한다.</p>
+  </div>
+  <div class="legend">
+    <span class="side-label">범례</span>
+    <div class="leg-row"><span class="dot" style="background:var(--ok)"></span>완료</div>
+    <div class="leg-row"><span class="dot" style="background:var(--warn)"></span>진행 중 · 현재</div>
+    <div class="leg-row"><span class="dot" style="background:var(--muted)"></span>예정</div>
+  </div>
+</aside>
+
+<!-- ══ MAIN ══ -->
+<main class="main">
+
+  <!-- 1. 부서 헤더 + 조직구조도 -->
+  <div class="dept-hd">
+    <div class="dept-top">
+      <div class="dept-title">
+        <h2>2026 브랜드전략본부 · 브랜드개발실 전략 / 운영</h2>
+        <p>브랜드개발실 통합 운영 현황 · 2026년 연간 기준 · 3분기 현재</p>
+      </div>
+      <div class="dept-chips">
+        <span class="dchip now">3분기 현재</span>
+        <span class="dchip">4개 팀</span>
+        <span class="dchip">2개 브랜드</span>
+        <span class="dchip">4대 전략</span>
+      </div>
+    </div>
+    <div class="org-wrap">
+      <div class="org-chart">
+        <div class="org-root">브랜드전략본부</div>
+        <div class="org-vert"></div>
+        <div class="org-dept-wrap">
+          <div class="org-dept">브랜드개발실</div>
+          <div class="org-hz" style="gap:0;padding-top:13px">
+            <div class="org-brand-col"><div class="org-vert"></div><div class="org-brand jsoop-brand">JSOOP</div></div>
+            <div class="org-brand-col"><div class="org-vert"></div><div class="org-brand anto-brand">ANTO MIGNON</div></div>
+          </div>
+          <div style="padding-top:13px;display:flex;flex-direction:column;align-items:center">
+            <div style="font-size:9px;color:var(--muted);letter-spacing:.08em;margin-bottom:5px">4대 전략 영역</div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center">
+              <div class="org-strat" style="color:var(--brand);border-color:rgba(104,161,255,.4);background:rgba(104,161,255,.1)">브랜드전략</div>
+              <div class="org-strat" style="color:var(--prod);border-color:rgba(83,223,155,.4);background:rgba(83,223,155,.1)">제품전략</div>
+              <div class="org-strat" style="color:var(--sales);border-color:rgba(255,179,78,.4);background:rgba(255,179,78,.1)">영업지원전략</div>
+              <div class="org-strat" style="color:var(--cont);border-color:rgba(201,150,255,.4);background:rgba(201,150,255,.1)">콘텐츠전략</div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;margin:5px 0 3px">
+            <div style="width:1px;height:8px;background:rgba(255,255,255,.2)"></div>
+            <div style="font-size:9px;color:var(--muted);padding:2px 8px;border:1px solid var(--line);border-radius:4px;white-space:nowrap;margin:2px 0">4개 팀이 전략별 과제 연계 실행</div>
+            <div style="width:1px;height:8px;background:rgba(255,255,255,.2)"></div>
+          </div>
+          <div class="org-hz" style="padding-top:0">
+            <div class="org-team-col"><div class="org-team"><b>BM팀</b><span>브랜드마케팅<br>상품개발</span></div></div>
+            <div class="org-team-col"><div class="org-team"><b>패키지팀</b><span>패키지<br>기획·디자인</span></div></div>
+            <div class="org-team-col"><div class="org-team"><b>웹디자인팀</b><span>브랜드디자인<br>콘텐츠디자인</span></div></div>
+            <div class="org-team-col"><div class="org-team"><b>콘텐츠팀</b><span>비주얼콘텐츠<br>미디어콘텐츠</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. 브랜드 탭 -->
+  <div class="brand-sw">
+    <div class="bs-tabs">
+      <button class="bs-btn active jsoop" id="bsj" onclick="setBrand(&#39;jsoop&#39;)">제이숲</button>
+      <button class="bs-btn anto" id="bsa" onclick="setBrand(&#39;anto&#39;)">앙또미뇽</button>
+    </div>
+    <div class="bs-info" id="bsInfo"><span class="bsi">브랜드전략 68%</span><span class="bsi">제품전략 74%</span><span class="bsi">영업지원전략 67%</span><span class="bsi">콘텐츠전략 59%</span></div>
+  </div>
+
+  <!-- 3. 브랜드 개요 -->
+  <div class="sec">
+    <div id="brandOv">
+  <div class="brand-ov">
+    <div class="ov-grid">
+      <div class="ov-premise">
+        <div class="premise-tag">제이숲 · 2026 브랜드 전략</div>
+        <div class="premise-name" style="color:#63c987">제이숲</div>
+        <div class="premise-text" style="border-color:#63c987">신규 서브브랜드와 라인업을 통해 브랜드 성장 파이프라인을 확장하고, 채널별 영업활동 지원을 병행한다.</div>
+        <div style="font-size:12px;color:var(--sub);line-height:1.7;margin-top:2px">상반기 신제품 15종 완료 · 홈쇼핑·다이소 영업지원 완료. 3분기 현재 채널 확대·바이오피엘 최종 준비 가속.</div>
+      </div>
+      <div class="sum-cards">
+        <div class="sum-card">
+          <b style="color:#63c987">15종</b>
+          <span>상반기 신제품 입고</span>
+          <small>프로·실크케라틴·카밍세라·리아비책</small>
+        </div><div class="sum-card">
+          <b style="color:#63c987">3분기 진행 중</b>
+          <span>채널 확대 진행</span>
+          <small>카선·무신사·PX + 신규채널 제안</small>
+        </div><div class="sum-card">
+          <b style="color:#63c987">12종+</b>
+          <span>하반기 출시 목표</span>
+          <small>바이오피엘 5종·실크필 7종·신규 라인</small>
+        </div><div class="sum-card">
+          <b style="color:#63c987">5개</b>
+          <span>지원 채널</span>
+          <small>홈쇼핑·다이소 완료 / 카선·무신사·PX 중</small>
+        </div>
+      </div>
+    </div>
+  </div></div>
+    <div class="yflow" id="yearFlow"><div class="yq done-q" style="--qc:var(--brand)">
+      <div class="yq-label"><b>1분기</b><span class="yq-badge" style="background:var(--brand)">완료</span></div>
+      <div class="yq-title">브랜드 기반 구축</div>
+      <div class="yq-items"><div>✓ 서브브랜드 포지셔닝 확정</div><div>✓ 채널별 SKU 기획 완료</div><div>✓ 전략 체계 수립</div></div>
+    </div><div class="yq done-q" style="--qc:var(--warn)">
+      <div class="yq-label"><b>2분기</b><span class="yq-badge" style="background:var(--warn)">완료</span></div>
+      <div class="yq-title">신규 브랜드·라인업 실행</div>
+      <div class="yq-items"><div>✓ 리아비책 5종 출시 완료</div><div>✓ 홈쇼핑 영업지원 완료</div><div>✓ 상반기 신제품 15종 입고</div></div>
+    </div><div class="yq now-q" style="--qc:var(--sales)">
+      <div class="yq-label"><b>3분기</b><span class="yq-badge" style="background:var(--sales)">현재</span></div>
+      <div class="yq-title">채널 확대 · 바이오피엘 준비</div>
+      <div class="yq-items"><div>◐ 카선·무신사·PX 영업지원 확장</div><div>◐ 바이오피엘·실크필 최종 개발</div><div>◐ 이마트·트레이더스 신규 제안</div></div>
+    </div><div class="yq " style="--qc:var(--cont)">
+      <div class="yq-label"><b>4분기</b><span class="yq-badge" style="background:var(--cont)">예정</span></div>
+      <div class="yq-title">브랜드 자산 고도화</div>
+      <div class="yq-items"><div>① 바이오피엘 5종 런칭 (10월)</div><div>② 실크필(다이소) 7종 출시</div><div>③ 차년도 전략 설계</div></div>
+    </div></div>
+  </div>
+
+  <!-- 4. 4대 전략 × 분기 -->
+  <div class="sec">
+    <div class="sec-hd"><h3 id="stratTitle">4대 전략 × 분기 운영 흐름</h3><p>전략 × 분기 셀 클릭 → 상세 노출</p></div>
+    <div class="mat-wrap">
+      <div class="mat-grid" id="matrix"><div class="mh">전략 / 분기</div><div class="mh">1분기</div><div class="mh">2분기</div><div class="mh now-h">3분기</div><div class="mh">4분기</div><div class="ms"><i style="--ac:var(--brand)"></i>브랜드전략</div><div class="mc" onclick="selectCell(&#39;brand&#39;,0)">
+        <b>서브브랜드 포지셔닝</b>
+        <p>서브브랜드 포지셔닝·BI/VI 기반 수립</p>
+        <div class="mc-tags">
+          <span class="mtag done">완료</span>
+          
+        </div>
+      </div><div class="mc" onclick="selectCell(&#39;brand&#39;,1)">
+        <b>리아비책 아이덴티티 확립</b>
+        <p>리아비책 아이덴티티 확립·바이오피엘 설계</p>
+        <div class="mc-tags">
+          <span class="mtag done">완료</span>
+          
+        </div>
+      </div><div class="mc sel" onclick="selectCell(&#39;brand&#39;,2)">
+        <b>바이오피엘 BI</b>
+        <p>바이오피엘 BI/VI 확정·채널 브랜드 루틴화</p>
+        <div class="mc-tags">
+          <span class="mtag doing">현재</span>
+          <span class="mtag now">★현재</span>
+        </div>
+      </div><div class="mc" onclick="selectCell(&#39;brand&#39;,3)">
+        <b>브랜드 자산 완성</b>
+        <p>브랜드 자산 완성·2027 파이프라인 설계</p>
+        <div class="mc-tags">
+          <span class="mtag todo">예정</span>
+          
+        </div>
+      </div><div class="ms"><i style="--ac:var(--prod)"></i>제품전략</div><div class="mc" onclick="selectCell(&#39;product&#39;,0)">
+        <b>채널별 SKU 기획</b>
+        <p>채널별 SKU 기획 · 상반기 신제품 계획 수립</p>
+        <div class="mc-tags">
+          <span class="mtag done">완료</span>
+          
+        </div>
+      </div><div class="mc" onclick="selectCell(&#39;product&#39;,1)">
+        <b>상반기 15종 입고 완료</b>
+        <p>상반기 15종 입고 완료 · 홈쇼핑·다이소 대응</p>
+        <div class="mc-tags">
+          <span class="mtag done">완료</span>
+          
+        </div>
+      </div><div class="mc" onclick="selectCell(&#39;product&#39;,2)">
+        <b>바이오피엘</b>
+        <p>바이오피엘·실크필 최종 개발 · 채널 SKU 확장</p>
+        <div class="mc-tags">
+          <span class="mtag doing">현재</span>
+          <span class="mtag now">★현재</span>
+        </div>
+      </div><div class="mc" onclick="selectCell(&#39;product&#39;,3)">
+        <b>바이오피엘</b>
+        <p>바이오피엘·실크필 런칭 · 신규 라인 착수</p>
+        <div class="mc-tags">
+          <span class="mtag todo">예정</span>
+          
+        </div>
+      </div><div class="ms"><i style="--ac:var(--sales)"></i>영업지원전략</div><div class="mc" onclick="selectCell(&#39;sales&#39;,0)">
+        <b>채널별 영업지원 체계</b>
+        <p>채널별 영업지원 체계 · 우선순위 확정</p>
+        <div class="mc-tags">
+          <span class="mtag done">완료</span>
+          
+        </div>
+      </div><div class="mc" onclick="selectCell(&#39;sales&#39;,1)">
+        <b>홈쇼핑</b>
+        <p>홈쇼핑·다이소 영업지원 완료</p>
+        <div class="mc-tags">
+          <span class="mtag done">완료</span>
+          
+        </div>
+      </div><div class="mc" onclick="selectCell(&#39;sales&#39;,2)">
+        <b>카선</b>
+        <p>카선·무신사·PX 확장 · 이마트·트레이더스 신규 제안</p>
+        <div class="mc-tags">
+          <span class="mtag doing">현재</span>
+          <span class="mtag now">★현재</span>
+        </div>
+      </div><div class="mc" onclick="selectCell(&#39;sales&#39;,3)">
+        <b>채널 지원 체계 문서화</b>
+        <p>채널 지원 체계 문서화 · 2027 설계</p>
+        <div class="mc-tags">
+          <span class="mtag todo">예정</span>
+          
+        </div>
+      </div><div class="ms"><i style="--ac:var(--cont)"></i>콘텐츠전략</div><div class="mc" onclick="selectCell(&#39;content&#39;,0)">
+        <b>콘텐츠 방향</b>
+        <p>콘텐츠 방향·톤앤무드·포맷 기준 정의</p>
+        <div class="mc-tags">
+          <span class="mtag done">완료</span>
+          
+        </div>
+      </div><div class="mc" onclick="selectCell(&#39;content&#39;,1)">
+        <b>리아비책 런칭 콘텐츠</b>
+        <p>리아비책 런칭 콘텐츠 · 채널 소재 완료</p>
+        <div class="mc-tags">
+          <span class="mtag done">완료</span>
+          
+        </div>
+      </div><div class="mc" onclick="selectCell(&#39;content&#39;,2)">
+        <b>숏폼</b>
+        <p>숏폼·AI 루틴 정착 · 바이오피엘 콘텐츠 준비</p>
+        <div class="mc-tags">
+          <span class="mtag doing">현재</span>
+          <span class="mtag now">★현재</span>
+        </div>
+      </div><div class="mc" onclick="selectCell(&#39;content&#39;,3)">
+        <b>바이오피엘 런칭 콘텐츠</b>
+        <p>바이오피엘 런칭 콘텐츠 · 자산 아카이빙</p>
+        <div class="mc-tags">
+          <span class="mtag todo">예정</span>
+          
+        </div>
+      </div></div>
+    </div>
+    <div class="detail-grid" id="detailGrid" style="display: grid;">
+    <div class="panel">
+      <div class="panel-hd">
+        <div><h3 style="color:var(--brand)">브랜드전략 · 3분기</h3><p style="font-size:11px;color:var(--muted);margin-top:3px">바이오피엘 BI/VI 확정 · 채널 루틴화</p><p style="font-size:11px;color:var(--sub);margin-top:4px;line-height:1.6">신규 서브브랜드 포지셔닝·BI/VI 체계를 수립해 브랜드 파이프라인 기반을 만든다.</p></div>
+        <span class="pct-badge" style="color:var(--brand)">68%</span>
+      </div>
+      <div style="margin-top:6px"><div class="pbar"><div style="width:68%;background:var(--brand)"></div></div></div>
+      <div style="margin-top:12px"><div class="tg">
+      <div class="acc-hd" onclick="toggleAcc(this)">
+        <div style="display:flex;align-items:center;gap:6px"><b style="font-size:12px">BM · 브랜드마케팅</b><span style="font-size:10px;color:var(--muted)">1개</span></div>
+        <div style="display:flex;gap:4px;align-items:center">
+          
+          <span class="tbadge doing">1진행</span>
+          
+          <span class="acc-arrow">▶</span>
+        </div>
+      </div>
+      <div class="acc-body"><div class="task doing">
+      <div class="ck">◐</div>
+      <div style="flex:1"><div class="t-name">[리아비책/바이오피엘] 런칭 전략 수립 &amp; 브랜드 운영</div><div class="t-sub">브랜드 스토리·포지셔닝 운영, 마케팅·바이럴 전략 실행</div></div>
+      <div class="t-part">BM · 브랜드마케팅</div>
+    </div></div>
+    </div><div class="tg">
+      <div class="acc-hd" onclick="toggleAcc(this)">
+        <div style="display:flex;align-items:center;gap:6px"><b style="font-size:12px">패키지</b><span style="font-size:10px;color:var(--muted)">1개</span></div>
+        <div style="display:flex;gap:4px;align-items:center">
+          
+          <span class="tbadge doing">1진행</span>
+          
+          <span class="acc-arrow">▶</span>
+        </div>
+      </div>
+      <div class="acc-body"><div class="task doing">
+      <div class="ck">◐</div>
+      <div style="flex:1"><div class="t-name">카카오선물하기 신규 브랜드 패키지 개발 + 기획세트 개발</div><div class="t-sub">브랜드 컨셉 반영 패키지·구성품·단상자 디자인</div></div>
+      <div class="t-part">패키지</div>
+    </div></div>
+    </div><div class="tg">
+      <div class="acc-hd" onclick="toggleAcc(this)">
+        <div style="display:flex;align-items:center;gap:6px"><b style="font-size:12px">웹 · BX</b><span style="font-size:10px;color:var(--muted)">1개</span></div>
+        <div style="display:flex;gap:4px;align-items:center">
+          
+          <span class="tbadge doing">1진행</span>
+          
+          <span class="acc-arrow">▶</span>
+        </div>
+      </div>
+      <div class="acc-body"><div class="task doing">
+      <div class="ck">◐</div>
+      <div style="flex:1"><div class="t-name">신규 비주얼 컨셉안 적용 확대 + 자사몰 프론트 개선</div><div class="t-sub">비주얼 컨셉 확산 및 자사몰 프론트 품질 개선</div></div>
+      <div class="t-part">웹 · BX</div>
+    </div></div>
+    </div><div class="tg">
+      <div class="acc-hd" onclick="toggleAcc(this)">
+        <div style="display:flex;align-items:center;gap:6px"><b style="font-size:12px">웹 · 콘텐츠디자인</b><span style="font-size:10px;color:var(--muted)">1개</span></div>
+        <div style="display:flex;gap:4px;align-items:center">
+          
+          <span class="tbadge doing">1진행</span>
+          
+          <span class="acc-arrow">▶</span>
+        </div>
+      </div>
+      <div class="acc-body"><div class="task doing">
+      <div class="ck">◐</div>
+      <div style="flex:1"><div class="t-name">브랜드 콘텐츠 라이브러리 구축</div><div class="t-sub">채널별 운영 가이드 정비 및 체계화</div></div>
+      <div class="t-part">웹 · 콘텐츠디자인</div>
+    </div></div>
+    </div><div class="tg">
+      <div class="acc-hd" onclick="toggleAcc(this)">
+        <div style="display:flex;align-items:center;gap:6px"><b style="font-size:12px">콘텐츠 · 사진</b><span style="font-size:10px;color:var(--muted)">1개</span></div>
+        <div style="display:flex;gap:4px;align-items:center">
+          
+          <span class="tbadge doing">1진행</span>
+          
+          <span class="acc-arrow">▶</span>
+        </div>
+      </div>
+      <div class="acc-body"><div class="task doing">
+      <div class="ck">◐</div>
+      <div style="flex:1"><div class="t-name">신규 비주얼 컨셉 디렉팅 + 컨셉 설계 + 브랜드 비주얼 자산 확보</div><div class="t-sub">브랜드 비주얼 자산 확보</div></div>
+      <div class="t-part">콘텐츠 · 사진</div>
+    </div></div>
+    </div><div class="tg">
+      <div class="acc-hd" onclick="toggleAcc(this)">
+        <div style="display:flex;align-items:center;gap:6px"><b style="font-size:12px">콘텐츠 · 영상</b><span style="font-size:10px;color:var(--muted)">1개</span></div>
+        <div style="display:flex;gap:4px;align-items:center">
+          
+          <span class="tbadge doing">1진행</span>
+          
+          <span class="acc-arrow">▶</span>
+        </div>
+      </div>
+      <div class="acc-body"><div class="task doing">
+      <div class="ck">◐</div>
+      <div style="flex:1"><div class="t-name">브랜드/라인업/채널별 콘텐츠 제작 확대</div><div class="t-sub">분류별 콘텐츠 생산 및 적용 확장</div></div>
+      <div class="t-part">콘텐츠 · 영상</div>
+    </div></div>
+    </div></div>
+    </div>
+    <div class="panel">
+      <div class="panel-hd"><h3>분기 리뷰 · 3Q</h3></div>
+      <div class="qd-now-badge">★ 현재 진행 중인 분기</div><div class="rv-grid">
+    <div class="rv-card"><h4>달성목표</h4><p>바이오피엘 BI/VI 최종 확정(Q4 런칭 대비), 채널별 브랜드 적용 루틴 정착, 신규 라인 컨셉 착수</p></div>
+    <div class="rv-card"><h4>진행 현황</h4><p>진행 중 — 바이오피엘 BI/VI 가이드 수립 중. 채널 적용 기준 정립 병행.</p></div>
+  </div><div style="margin-top:8px"><div class="kpi-row"><b>바이오피엘 BI/VI</b><span>확정 목표</span></div><div class="kpi-row"><b>채널 브랜드 적용</b><span>루틴화</span></div></div><div class="prod-launch"><div class="prod-launch-hd">제품 출시 현황</div><div class="prod-grid">
+    <div class="prod-item">
+      <div class="prod-dot" style="background:var(--warn)"></div>
+      <div><div class="pi-name">카밍세라 청소년 샴푸 2X <span style="font-weight:900;color:var(--warn)">2종</span></div><div class="pi-meta">7월</div></div>
+    </div>
+    <div class="prod-item">
+      <div class="prod-dot" style="background:var(--warn)"></div>
+      <div><div class="pi-name">GWP 소용량(카밍·딥그린) <span style="font-weight:900;color:var(--warn)">5종</span></div><div class="pi-meta">7월</div></div>
+    </div>
+    <div class="prod-item">
+      <div class="prod-dot" style="background:var(--warn)"></div>
+      <div><div class="pi-name">리아비책 한방 라인 <span style="font-weight:900;color:var(--warn)">3종</span></div><div class="pi-meta">9월</div></div>
+    </div>
+    <div class="prod-item">
+      <div class="prod-dot" style="background:var(--warn)"></div>
+      <div><div class="pi-name">실크필(다이소) 라인 <span style="font-weight:900;color:var(--warn)">6종</span></div><div class="pi-meta">9월</div></div>
+    </div></div></div><div class="todo-box" style="border-color:rgba(255,179,78,.3);color:var(--warn)">분기 완료 후 잘된 점·개선점·이월과제를 기록합니다.</div>
+    </div></div>
+  </div>
+
+  <!-- 5. 월간 실행 과제 -->
+  <div class="sec">
+    <div class="sec-hd"><h3 id="monthTitle">7월 · 제이숲 팀별 필수 이행 과제</h3><p>이번 달 반드시 이행되어야 하는 팀별 핵심 과제</p></div>
+    <div class="monthly-grid" id="monthlyGrid">
+    <div class="mt-team">
+      <div class="mt-team-hd" style="--tc:var(--brand)">
+        <div style="width:8px;height:8px;border-radius:50%;background:var(--brand);flex-shrink:0"></div>
+        <b>BM팀</b>
+        <span style="color:var(--brand)">3개</span>
+      </div>
+      <div class="mt-item">
+        <div class="mt-dot" style="background:var(--warn)"></div>
+        <span>바이오피엘 포지셔닝 최종 확정 — Q4 런칭 기준일 연동</span>
+      </div><div class="mt-item">
+        <div class="mt-dot" style="background:var(--warn)"></div>
+        <span>이마트·트레이더스 신규 채널 제안서 기획</span>
+      </div><div class="mt-item">
+        <div class="mt-dot" style="background:var(--muted)"></div>
+        <span>카선·무신사 소구점 메시지 작성</span>
+      </div>
+    </div>
+    <div class="mt-team">
+      <div class="mt-team-hd" style="--tc:var(--prod)">
+        <div style="width:8px;height:8px;border-radius:50%;background:var(--prod);flex-shrink:0"></div>
+        <b>패키지팀</b>
+        <span style="color:var(--prod)">3개</span>
+      </div>
+      <div class="mt-item">
+        <div class="mt-dot" style="background:var(--warn)"></div>
+        <span>바이오피엘 패키지 방향 최종 확정</span>
+      </div><div class="mt-item">
+        <div class="mt-dot" style="background:var(--warn)"></div>
+        <span>카밍세라 GWP 패키지 검수 대응</span>
+      </div><div class="mt-item">
+        <div class="mt-dot" style="background:var(--muted)"></div>
+        <span>실크필(다이소) 패키지 중간 검수</span>
+      </div>
+    </div>
+    <div class="mt-team">
+      <div class="mt-team-hd" style="--tc:var(--sales)">
+        <div style="width:8px;height:8px;border-radius:50%;background:var(--sales);flex-shrink:0"></div>
+        <b>웹디자인팀</b>
+        <span style="color:var(--sales)">3개</span>
+      </div>
+      <div class="mt-item">
+        <div class="mt-dot" style="background:var(--warn)"></div>
+        <span>카선·무신사·PX 채널 소재 1차 납품</span>
+      </div><div class="mt-item">
+        <div class="mt-dot" style="background:var(--warn)"></div>
+        <span>숏폼·SNS 템플릿 포맷 업데이트</span>
+      </div><div class="mt-item">
+        <div class="mt-dot" style="background:var(--muted)"></div>
+        <span>이마트 제안용 브랜드 비주얼 준비</span>
+      </div>
+    </div>
+    <div class="mt-team">
+      <div class="mt-team-hd" style="--tc:var(--cont)">
+        <div style="width:8px;height:8px;border-radius:50%;background:var(--cont);flex-shrink:0"></div>
+        <b>콘텐츠팀</b>
+        <span style="color:var(--cont)">3개</span>
+      </div>
+      <div class="mt-item">
+        <div class="mt-dot" style="background:var(--warn)"></div>
+        <span>숏폼 1회 이상 제작·업로드 (루틴 시작)</span>
+      </div><div class="mt-item">
+        <div class="mt-dot" style="background:var(--muted)"></div>
+        <span>AI 비주얼 기준안 작성 및 팀 공유</span>
+      </div><div class="mt-item">
+        <div class="mt-dot" style="background:var(--muted)"></div>
+        <span>바이오피엘 런칭 콘텐츠 기획 착수</span>
+      </div>
+    </div></div>
+  </div>
+
+
+  <!-- 6. 주간 작업물 갤러리 -->
+  <div class="sec gallery-sec">
+    <div class="gallery-hd">
+      <div>
+        <h3>주간 작업물</h3>
+        <p>팀 주간 산출물 · 이미지 아카이브</p>
+      </div>
+    </div>
+    <div id="galleryContainer"></div>
+  </div>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lb-bg" style="display:none" onclick="closeLB(event)">
+    <div class="lb-box" onclick="event.stopPropagation()">
+      <div class="lb-img-wrap"><img id="lbImg" src="file:///C:/Users/jsoop/Downloads/JSOOP_Brand_OS_v8_2.html" alt=""></div>
+      <div class="lb-footer">
+        <div class="lb-info"><h4 id="lbTitle"></h4><p id="lbDesc"></p></div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <div class="lb-nav">
+            <button onclick="lbNav(-1)">←</button>
+            <button onclick="lbNav(1)">→</button>
+          </div>
+          <button class="lb-close" onclick="document.getElementById(&#39;lightbox&#39;).style.display=&#39;none&#39;">닫기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- ══ RIGHT: KPI ══ -->
+<aside class="right">
+  <div>
+    <div class="kpi-hd"><h3 id="kpiTitle">KPI 종합지표</h3><span id="kpiBrand">제이숲</span></div>
+    <div class="overall-pct"><b id="kpiOverall" style="color: rgb(99, 201, 135);">67%</b><span>전체 달성률 · 3분기 기준</span></div>
+  </div>
+  <div class="r-sec">
+    <span class="r-label">전략별 진행률</span>
+    <div id="stratBars">
+    <div class="strat-bar">
+      <div class="sb-row"><span class="sb-name">브랜드전략</span>
+        <span class="sb-pct" style="color:var(--brand)">68%</span>
+      </div>
+      <div class="sb-track"><div class="sb-fill" style="width:68%;background:var(--brand)"></div></div>
+    </div>
+    <div class="strat-bar">
+      <div class="sb-row"><span class="sb-name">제품전략</span>
+        <span class="sb-pct" style="color:var(--prod)">74%</span>
+      </div>
+      <div class="sb-track"><div class="sb-fill" style="width:74%;background:var(--prod)"></div></div>
+    </div>
+    <div class="strat-bar">
+      <div class="sb-row"><span class="sb-name">영업지원전략</span>
+        <span class="sb-pct" style="color:var(--sales)">67%</span>
+      </div>
+      <div class="sb-track"><div class="sb-fill" style="width:67%;background:var(--sales)"></div></div>
+    </div>
+    <div class="strat-bar">
+      <div class="sb-row"><span class="sb-name">콘텐츠전략</span>
+        <span class="sb-pct" style="color:var(--cont)">59%</span>
+      </div>
+      <div class="sb-track"><div class="sb-fill" style="width:59%;background:var(--cont)"></div></div>
+    </div></div>
+  </div>
+  <div class="r-sec">
+    <span class="r-label">제품 출시 현황</span>
+    <div class="stat-grid" id="prodStats">
+    <div class="stat-card"><b style="color:var(--ok)">20</b><span>출시 완료</span></div>
+    <div class="stat-card"><b style="color:var(--warn)">16</b><span>개발 진행</span></div>
+    <div class="stat-card"><b style="color:var(--muted)">8</b><span>출시 예정</span></div></div>
+  </div>
+  <div class="r-sec">
+    <span class="r-label">핵심 현황</span>
+    <div id="keyStatus">
+    <div class="chk-item"><div class="chk-dot" style="background:var(--brand)"></div><span>3분기 현재 — 채널 확대 및 바이오피엘 준비 가속 중</span></div>
+    <div class="chk-item"><div class="chk-dot" style="background:var(--brand)"></div><span>홈쇼핑·다이소 영업지원 완료, 카선·무신사·PX 확장 진행</span></div>
+    <div class="chk-item"><div class="chk-dot" style="background:var(--brand)"></div><span>하반기 목표: 바이오피엘 5종 + 실크필 7종 Q4 출시</span></div></div>
+  </div>
+  <div class="r-sec">
+    <span class="r-label">주요 점검사항</span>
+    <div id="checkpoints">
+    <div class="chk-item"><div class="chk-dot" style="background:var(--bad)"></div><span>바이오피엘 런칭 기준일 확정 필요</span></div>
+    <div class="chk-item"><div class="chk-dot" style="background:var(--warn)"></div><span>실크필(다이소) 검수 일정 조율 중</span></div>
+    <div class="chk-item"><div class="chk-dot" style="background:var(--warn)"></div><span>카선·무신사·PX 소재 납기 관리</span></div>
+    <div class="chk-item"><div class="chk-dot" style="background:var(--brand)"></div><span>나프타쇼크 원가 상승 지속 대응</span></div></div>
+  </div>
+</aside>
+
+</div>
+<script>
+/* ══════════════════════════════════
+   STATE
+══════════════════════════════════ */
+let currentBrand = 'jsoop';
+let currentStrat = 'brand';
+let currentQ = 2; // 0-indexed, Q3 = 현재
+
+const SK = ['brand','product','sales','content'];
+const SN = {brand:'브랜드전략',product:'제품전략',sales:'영업지원전략',content:'콘텐츠전략'};
+const SC = {brand:'var(--brand)',product:'var(--prod)',sales:'var(--sales)',content:'var(--cont)'};
+
+/* ══════════════════════════════════
+   제이숲 DATA
+══════════════════════════════════ */
+const jsoopData = {
+  name:'제이숲', bc:'#63c987', bv:'var(--jsoop)',
+  premise:'신규 서브브랜드와 라인업을 통해 브랜드 성장 파이프라인을 확장하고, 채널별 영업활동 지원을 병행한다.',
+  summary:{
+    headline:'상반기 신제품 15종 완료 · 홈쇼핑·다이소 영업지원 완료. 3분기 현재 채널 확대·바이오피엘 최종 준비 가속.',
+    cards:[
+      {val:'15종',label:'상반기 신제품 입고',sub:'프로·실크케라틴·카밍세라·리아비책'},
+      {val:'3분기 진행 중',label:'채널 확대 진행',sub:'카선·무신사·PX + 신규채널 제안'},
+      {val:'12종+',label:'하반기 출시 목표',sub:'바이오피엘 5종·실크필 7종·신규 라인'},
+      {val:'5개',label:'지원 채널',sub:'홈쇼핑·다이소 완료 / 카선·무신사·PX 중'}
+    ]
+  },
+  overall: 67,
+  stratPct:{brand:68,product:74,sales:67,content:59},
+  prodStats:{launched:20,doing:16,planned:8},
+  keyStatus:[
+    '3분기 현재 — 채널 확대 및 바이오피엘 준비 가속 중',
+    '홈쇼핑·다이소 영업지원 완료, 카선·무신사·PX 확장 진행',
+    '하반기 목표: 바이오피엘 5종 + 실크필 7종 Q4 출시',
+  ],
+  checkpoints:[
+    {c:'var(--bad)',t:'바이오피엘 런칭 기준일 확정 필요'},
+    {c:'var(--warn)',t:'실크필(다이소) 검수 일정 조율 중'},
+    {c:'var(--warn)',t:'카선·무신사·PX 소재 납기 관리'},
+    {c:'var(--brand)',t:'나프타쇼크 원가 상승 지속 대응'},
+  ],
+  flow:[
+    {q:'1분기',status:'done',qc:'var(--brand)',title:'브랜드 기반 구축',items:['✓ 서브브랜드 포지셔닝 확정','✓ 채널별 SKU 기획 완료','✓ 전략 체계 수립']},
+    {q:'2분기',status:'done',qc:'var(--warn)',title:'신규 브랜드·라인업 실행',items:['✓ 리아비책 5종 출시 완료','✓ 홈쇼핑 영업지원 완료','✓ 상반기 신제품 15종 입고']},
+    {q:'3분기',status:'doing',qc:'var(--sales)',title:'채널 확대 · 바이오피엘 준비',items:['◐ 카선·무신사·PX 영업지원 확장','◐ 바이오피엘·실크필 최종 개발','◐ 이마트·트레이더스 신규 제안'],now:true},
+    {q:'4분기',status:'todo',qc:'var(--cont)',title:'브랜드 자산 고도화',items:['① 바이오피엘 5종 런칭 (10월)','② 실크필(다이소) 7종 출시','③ 차년도 전략 설계']}
+  ],
+  strategies:{
+    brand:{
+      name:'브랜드전략', color:'var(--brand)', pct:68,
+      desc:'신규 서브브랜드 포지셔닝·BI/VI 체계를 수립해 브랜드 파이프라인 기반을 만든다.',
+      flow:['서브브랜드 포지셔닝·BI/VI 기반 수립','리아비책 아이덴티티 확립·바이오피엘 설계','바이오피엘 BI/VI 확정·채널 브랜드 루틴화','브랜드 자산 완성·2027 파이프라인 설계'],
+      qd:{
+        q1:{status:'done',phase:'브랜드 기반 구축',
+          goal:'리아비책·바이오피엘 포지셔닝 확정, BI/VI 기초 체계 수립',
+          result:'포지셔닝 문서 2건 완성. BI/VI 가이드라인 1차 완료. 전략 정렬 완료.',
+          kpi:[['포지셔닝 확정','2건'],['BI/VI 가이드','1차 완료']],
+          good:['서브브랜드 방향 조기 확정으로 실행 가속','팀 간 전략 정렬 완료'],
+          imp:['BI/VI 채널 적용 기준 구체화 지연'],
+          carry:['BI/VI 세부 기준 2Q 이월'],
+          products:[{name:'프로페셔널 클리닉 라인',count:'4종',month:'1월',s:'done'},{name:'맨즈 다운펌·헤어 미스트',count:'2종',month:'1월',s:'done'},{name:'실크케라틴 컨디셔너',count:'1종',month:'2월',s:'done'},{name:'카밍세라 키즈 라인',count:'2종',month:'2월',s:'done'},{name:'리아비책 물염색+리뉴얼',count:'6종',month:'3월',s:'done'}]},
+        q2:{status:'done',phase:'신규 브랜드·라인업 실행',
+          goal:'리아비책 순차 출시 완료, 바이오피엘 제품 설계·마케팅 전략 수립',
+          result:'리아비책 팩폼 6월 출시 완료. 바이오피엘 개발 진행률 80%. 채널 소재 기준 완성.',
+          kpi:[['리아비책 출시','5종 완료'],['바이오피엘 개발률','80%']],
+          good:['전략-패키지-콘텐츠 협업 구조 안착'],
+          imp:['바이오피엘 런칭 기준일 미확정'],
+          carry:['바이오피엘 Q4 준비 3Q 가속화'],
+          products:[{name:'클리닉 약산성 샴푸(리뉴얼)',count:'1종',month:'4월',s:'done'},{name:'리아비책 팩폼',count:'2종',month:'6월',s:'done'},{name:'커버업 새치 마스카라',count:'2종',month:'6월',s:'done'}]},
+        q3:{status:'doing',phase:'바이오피엘 BI/VI 확정 · 채널 루틴화',
+          goal:'바이오피엘 BI/VI 최종 확정(Q4 런칭 대비), 채널별 브랜드 적용 루틴 정착, 신규 라인 컨셉 착수',
+          result:'진행 중 — 바이오피엘 BI/VI 가이드 수립 중. 채널 적용 기준 정립 병행.',
+          kpi:[['바이오피엘 BI/VI','확정 목표'],['채널 브랜드 적용','루틴화']],
+          good:[],imp:[],carry:[],
+          products:[{name:'카밍세라 청소년 샴푸 2X',count:'2종',month:'7월',s:'doing'},{name:'GWP 소용량(카밍·딥그린)',count:'5종',month:'7월',s:'doing'},{name:'리아비책 한방 라인',count:'3종',month:'9월',s:'doing'},{name:'실크필(다이소) 라인',count:'6종',month:'9월',s:'doing'}]},
+        q4:{status:'todo',phase:'브랜드 자산 완성 · 2027 설계',
+          goal:'바이오피엘 런칭. 브랜드 자산 아카이빙. 2027 전략 설계.',
+          result:'— (예정)',
+          kpi:[['바이오피엘 런칭','10월 목표'],['2027 전략','초안 완료']],
+          good:[],imp:[],carry:[],
+          products:[{name:'바이오피엘 론칭 라인',count:'5종',month:'10월',s:'todo'},{name:'눈썹염모제 기획세트',count:'1종',month:'10월',s:'todo'},{name:'새치염색 듀얼샤쉐',count:'2종',month:'11월',s:'todo'}]}
+      },
+      tasks:[
+        ['브랜드개발실 공통 핵심과제',[
+          ['done','리아비책 아이덴티티 확립','포지셔닝·BI/VI 기준 확정 완료','공통'],
+          ['doing','바이오피엘 BI/VI 최종 확정','Q4 런칭 대비 브랜드 표현 기준 수립 (80%)','공통'],
+          ['doing','채널별 브랜드 운영 루틴화','카선·무신사·PX 적용 기준 정립 중','공통'],
+          ['todo','퍼먼트바이옴·굿나잇리추얼 컨셉','Q4 신규 라인 브랜드 방향 착수','공통']
+        ]],
+        ['BM팀',[
+          ['done','리아비책 포지셔닝·메시지 확정','프리미엄 토탈 케어 컨셉 완료','BM 브랜드'],
+          ['doing','바이오피엘 포지셔닝 최종','더마 리페어 핵심 메시지 확정 중','BM 브랜드'],
+          ['todo','신규 라인 컨셉 착수','퍼먼트바이옴·굿나잇리추얼 방향','BM 상품']
+        ]],
+        ['패키지팀',[
+          ['done','리아비책 패키지 납품 완료','전 SKU 납품 완료','패키지'],
+          ['doing','바이오피엘 패키지 방향 확정','더마 리페어 패키지 방향 수립','패키지'],
+          ['todo','신규 라인 패키지 기획','퍼먼트바이옴·굿나잇리추얼','패키지']
+        ]],
+        ['웹디자인팀',[
+          ['doing','채널 비주얼 톤 기준 정립','카선·무신사·PX 비주얼 기준 구축','브랜드디자인'],
+          ['doing','소재 템플릿 표준화','런칭·프로모션 소재 포맷 정비','콘텐츠디자인']
+        ]],
+        ['콘텐츠팀',[
+          ['done','리아비책 연출컷 완료','기본 제품 연출 완료','비주얼콘텐츠'],
+          ['doing','AI 비주얼 기준 수립','AI 활용 연출컷 품질 기준 정립','비주얼콘텐츠'],
+          ['todo','바이오피엘 콘텐츠 기획','Q4 런칭 대비 콘텐츠 방향','미디어콘텐츠']
+        ]]
+      ],
+      qdTasks:{
+        q1:[
+          ['BM · 브랜드마케팅',[
+            ['done','시장성·적합성·경쟁력 분석 및 우선순위 도출','브랜드 컨셉 및 방향성 설계','BM · 브랜드마케팅']
+          ]],
+          ['패키지',[
+            ['done','리아비책/다이소 신규 브랜드 패키지 개발','브랜드 컨셉 반영 패키지·구성품·단상자 디자인, 용기/부자재 선정 및 구매 병행','패키지']
+          ]],
+          ['콘텐츠 · 사진',[
+            ['done','AI 기반 브랜드 촬영 컨셉 & 런칭 비주얼 개발','AI 기술 활용 촬영 기반 마련','콘텐츠 · 사진']
+          ]],
+          ['콘텐츠 · 영상',[
+            ['done','AI 기반 신규 툴 & 엔진 사용/적합성 테스트를 통한 실무 연계','실무 연계 기반 마련 완료','콘텐츠 · 영상']
+          ]]
+        ],
+        q2:[
+          ['BM · 브랜드마케팅',[
+            ['done','[리아비책/바이오피엘] 브랜드 스토리·핵심 메시지·포지셔닝 확정','마케팅 전략 수립, 바이럴 전략 수립','BM · 브랜드마케팅']
+          ]],
+          ['패키지',[
+            ['done','바이오피엘 신규 브랜드 패키지 개발','더마 리페어 컨셉 반영 패키지 방향 확정','패키지']
+          ]],
+          ['웹 · BX',[
+            ['done','신규 비주얼 컨셉안 개발 및 선제 적용','채널 선제 적용을 통한 브랜드 비주얼 기반 구축','웹 · BX']
+          ]],
+          ['웹 · 콘텐츠디자인',[
+            ['done','분류별 콘텐츠 감도/모티브/톤앤무드 설정','가이드 제작 및 템플릿화','웹 · 콘텐츠디자인']
+          ]],
+          ['콘텐츠 · 사진',[
+            ['done','AI 생성+가공 기술 고도화','모델컷 중심 기술 고도화','콘텐츠 · 사진']
+          ]],
+          ['콘텐츠 · 영상',[
+            ['done','브랜드/라인업/채널별 콘텐츠 가이드 제작 & 템플릿 설계','콘텐츠 가이드 & 템플릿 설계 완료','콘텐츠 · 영상']
+          ]]
+        ],
+        q3:[
+          ['BM · 브랜드마케팅',[
+            ['doing','[리아비책/바이오피엘] 런칭 전략 수립 & 브랜드 운영','브랜드 스토리·포지셔닝 운영, 마케팅·바이럴 전략 실행','BM · 브랜드마케팅']
+          ]],
+          ['패키지',[
+            ['doing','카카오선물하기 신규 브랜드 패키지 개발 + 기획세트 개발','브랜드 컨셉 반영 패키지·구성품·단상자 디자인','패키지']
+          ]],
+          ['웹 · BX',[
+            ['doing','신규 비주얼 컨셉안 적용 확대 + 자사몰 프론트 개선','비주얼 컨셉 확산 및 자사몰 프론트 품질 개선','웹 · BX']
+          ]],
+          ['웹 · 콘텐츠디자인',[
+            ['doing','브랜드 콘텐츠 라이브러리 구축','채널별 운영 가이드 정비 및 체계화','웹 · 콘텐츠디자인']
+          ]],
+          ['콘텐츠 · 사진',[
+            ['doing','신규 비주얼 컨셉 디렉팅 + 컨셉 설계 + 브랜드 비주얼 자산 확보','브랜드 비주얼 자산 확보','콘텐츠 · 사진']
+          ]],
+          ['콘텐츠 · 영상',[
+            ['doing','브랜드/라인업/채널별 콘텐츠 제작 확대','분류별 콘텐츠 생산 및 적용 확장','콘텐츠 · 영상']
+          ]]
+        ],
+        q4:[
+          ['BM · 브랜드마케팅',[
+            ['todo','브랜드 성과 분석·브랜드 포트폴리오 재정비·리브랜딩 전략 설계','연간 성과 분석 기반 차년도 브랜드 전략 설계','BM · 브랜드마케팅']
+          ]],
+          ['패키지',[
+            ['todo','럽프리 신규 브랜드 패키지 개발','신규 브랜드 컨셉 반영 패키지','패키지']
+          ]],
+          ['웹 · BX',[
+            ['todo','자사몰 프론트 고도화 + 브랜드 시그니처 & 크리에이션 개발','모티브/아트웍 중심 크리에이션 실행, KV 도출, 컨셉 시각화','웹 · BX']
+          ]],
+          ['웹 · 콘텐츠디자인',[
+            ['todo','분류별 콘텐츠 생산 및 적용 확장','신규 모티브 지속 개발','웹 · 콘텐츠디자인']
+          ]]
+        ]
+      }
+    },
+    product:{
+      name:'제품전략', color:'var(--prod)', pct:74,
+      desc:'신규 라인업 SKU를 설계·개발해 브랜드 파이프라인의 제품 실체를 구현한다.',
+      flow:['채널별 SKU 기획 · 상반기 신제품 계획 수립','상반기 15종 입고 완료 · 홈쇼핑·다이소 대응','바이오피엘·실크필 최종 개발 · 채널 SKU 확장','바이오피엘·실크필 런칭 · 신규 라인 착수'],
+      qd:{
+        q1:{status:'done',phase:'SKU 기획 · 상반기 신제품 계획',
+          goal:'채널별 SKU 기획 완료, 상반기 신제품 15종 입고 계획 수립',
+          result:'홈쇼핑 세트 구성안 확정. 다이소 규격 검토. 채널별 SKU 기획 완료.',
+          kpi:[['채널 SKU 기획','4채널 완료'],['상반기 계획','15종 수립']],
+          good:['채널별 SKU 분리 설계 초기 안착'],
+          imp:['다이소 실크필 별도 설계 미완'],
+          carry:['실크필 라인 2Q 착수'],
+          products:[{name:'프로페셔널 클리닉 라인',count:'4종',month:'1월',s:'done'},{name:'맨즈 다운펌·헤어 미스트',count:'2종',month:'1월',s:'done'},{name:'실크케라틴 컨디셔너',count:'1종',month:'2월',s:'done'},{name:'카밍세라 키즈 라인',count:'2종',month:'2월',s:'done'},{name:'리아비책 물염색+리뉴얼',count:'6종',month:'3월',s:'done'}]},
+        q2:{status:'done',phase:'상반기 신제품 완료 · 홈쇼핑·다이소 대응',
+          goal:'상반기 15종 입고 완료, 다이소 실크필 Q4 착수, SKU 개발 진행률 74%',
+          result:'상반기 신제품 15종 입고 완료. 다이소 실크필 7종 착수. SKU 개발률 74%.',
+          kpi:[['상반기 신제품 입고','15종 완료'],['SKU 개발률','74%'],['실크필 착수','7종']],
+          good:['상반기 신제품 납기 준수','리아비책 순차 출시 성공'],
+          imp:['바이오피엘 개발 Q3→Q4 조정','나프타쇼크 원가 대응 미흡'],
+          carry:['바이오피엘 Q4 준비','실크필 7종 개발 완료'],
+          products:[{name:'클리닉 약산성 샴푸(리뉴얼)',count:'1종',month:'4월',s:'done'},{name:'리아비책 팩폼',count:'2종',month:'6월',s:'done'},{name:'커버업 새치 마스카라',count:'2종',month:'6월',s:'done'}]},
+        q3:{status:'doing',phase:'신규 브랜드 최종 개발 · 채널 SKU 확장',
+          goal:'바이오피엘 5종·실크필 7종 최종 개발 완료, 카밍세라·GWP Q3 입고',
+          result:'진행 중 — 바이오피엘 개발 막바지. 카밍세라 Q3 입고 진행. 실크필 검수 병행.',
+          kpi:[['바이오피엘 최종 개발','5종'],['실크필(다이소)','7종 목표'],['카밍세라·GWP 입고','Q3 목표']],
+          good:[],imp:[],carry:[],
+          products:[{name:'카밍세라 청소년 샴푸 2X',count:'2종',month:'7월',s:'doing'},{name:'GWP 소용량(카밍·딥그린)',count:'5종',month:'7월',s:'doing'},{name:'리아비책 한방 라인',count:'3종',month:'9월',s:'doing'},{name:'실크필(다이소) 라인',count:'6종',month:'9월',s:'doing'}]},
+        q4:{status:'todo',phase:'바이오피엘·실크필 런칭 · 신규 라인 착수',
+          goal:'바이오피엘 5종·실크필 7종 출시, 퍼먼트바이옴·굿나잇리추얼 착수',
+          result:'— (예정)',
+          kpi:[['바이오피엘 5종','10월 출시'],['실크필 7종','10월 출시'],['신규 라인','착수']],
+          good:[],imp:[],carry:[],
+          products:[{name:'바이오피엘 론칭 라인',count:'5종',month:'10월',s:'todo'},{name:'눈썹염모제 기획세트',count:'1종',month:'10월',s:'todo'},{name:'새치염색 듀얼샤쉐',count:'2종',month:'11월',s:'todo'}]}
+      },
+      tasks:[
+        ['브랜드개발실 공통 핵심과제',[
+          ['done','상반기 신제품 15종 입고 완료','프로·실크케라틴·카밍세라·리아비책 완료','공통'],
+          ['done','홈쇼핑·다이소 SKU 대응 완료','세트 구성·규격 패키지 납품 완료','공통'],
+          ['doing','바이오피엘 5종 최종 개발','Q4 10월 출시 목표','공통'],
+          ['doing','실크필(다이소) 7종 개발','다이소 전용 SKU 검수 진행','공통'],
+          ['doing','카밍세라·GWP Q3 입고','카밍세라 2종 + GWP 7종','공통'],
+          ['todo','퍼먼트바이옴·굿나잇리추얼 SKU','Q4 대비 성분·방향 기획','공통']
+        ]],
+        ['BM팀',[
+          ['done','홈쇼핑 세트 SKU 확정','채널 조건 맞춤 구성 완료','BM 상품'],
+          ['doing','채널별 SKU 포트폴리오','카선·무신사·PX 구성 진행','BM 상품'],
+          ['doing','바이오피엘 SKU 설계','샴푸·트리트먼트·바디워시·로션·미스트','BM 상품'],
+          ['todo','Q4 라인업 SKU 기획','퍼먼트바이옴·굿나잇리추얼','BM 상품']
+        ]],
+        ['패키지팀',[
+          ['done','홈쇼핑 세트 패키지 납품','채널 규격 완료','패키지'],
+          ['done','다이소 규격 패키지 완료','규격 최종 확인 완료','패키지'],
+          ['doing','바이오피엘 패키지 완료','최종 납품 준비','패키지'],
+          ['todo','실크필·신규 라인 패키지','Q4 준비','패키지']
+        ]],
+        ['웹디자인팀',[
+          ['done','홈쇼핑 상품 이미지 납품','채널 규격 완료','콘텐츠디자인'],
+          ['done','다이소 채널 이미지 완료','입점용 이미지 완료','콘텐츠디자인'],
+          ['doing','카선·무신사·PX 소재 제작','신규 채널 이미지 진행','콘텐츠디자인'],
+          ['todo','Q4 신규 SKU 상세','바이오피엘·실크필 상세 페이지','콘텐츠디자인']
+        ]]
+      ],
+      qdTasks:{
+        q1:[
+          ['BM · 상품개발',[
+            ['done','① 브랜드별 역할 정의·카테고리 구조 설계·핵심 제품군 도출·SKU 우선순위 설정','브랜드 포트폴리오 기반 설계','BM · 상품개발'],
+            ['done','② 채널별 소비자 특성 분석·전용 SKU 기획·가격구조 설계','채널 특성 기반 상품 기획','BM · 상품개발']
+          ]],
+          ['패키지',[
+            ['done','라인업 체계 설계·패키지 패밀리룩 방향 설정·브랜드별 디자인 차별화 전략 수립','패키지 아이덴티티 기반 구축','패키지']
+          ]],
+          ['웹 · 콘텐츠디자인',[
+            ['done','상세페이지 톤앤무드 정의·제품컷·모델컷 촬영 컨셉 및 레퍼런스 기반 디렉팅','상세페이지 비주얼 전략 수립','웹 · 콘텐츠디자인']
+          ]],
+          ['콘텐츠 · 사진',[
+            ['done','제품컷/모델컷/누끼컷 촬영 & 보정 가이드 구축','촬영 기준 체계 완성','콘텐츠 · 사진']
+          ]]
+        ],
+        q2:[
+          ['BM · 상품개발',[
+            ['done','① 분류별 핵심 SKU 개발·상품성 검토 및 개선·원가 구조 검토·생산 적합성 검토','신규 SKU 개발 및 검증','BM · 상품개발'],
+            ['done','② VOC 데이터 분석 + 처방/구성 개선사항 반영','고객 피드백 기반 상품 개선','BM · 상품개발']
+          ]],
+          ['패키지',[
+            ['done','분류별 세부 SKU 패키지 개발·용기·부자재 선정 및 발주·생산·양산 대응','패키지 생산 대응','패키지']
+          ]],
+          ['웹 · 콘텐츠디자인',[
+            ['done','매출 상위 SKU 우선 리뉴얼·핵심 카테고리 상세페이지 개선','채널별 상세페이지 최적화','웹 · 콘텐츠디자인']
+          ]],
+          ['콘텐츠 · 사진',[
+            ['done','트렌드 기반 제품 연출 방식 개발·공간감·구도·라이팅 디렉션 고도화','제품 연출 고도화','콘텐츠 · 사진']
+          ]]
+        ],
+        q3:[
+          ['BM · 상품개발',[
+            ['doing','① 성공 SKU 파생상품 확대·채널 전용 SKU 확대·기획세트/번들상품 개발','SKU 확장 및 채널 특화','BM · 상품개발'],
+            ['doing','② 핵심 카테고리 선정·히어로 제품 개발·차별화 포인트 설계','차세대 히어로 제품 개발','BM · 상품개발']
+          ]],
+          ['패키지',[
+            ['doing','특정 채널 전용 패키지 개발','채널 특화 패키지 기획 및 개발','패키지']
+          ]],
+          ['웹 · 콘텐츠디자인',[
+            ['doing','리뉴얼 적용 SKU 확대·신규 브랜드 상세페이지 구축','채널별 표현 차별화, 전환 중심 구조 고도화','웹 · 콘텐츠디자인']
+          ]],
+          ['콘텐츠 · 사진',[
+            ['doing','채널별 비주얼 컨셉 차별화·콘텐츠 전반 확산','채널 특성 기반 비주얼 전략 적용','콘텐츠 · 사진']
+          ]]
+        ],
+        q4:[
+          ['BM · 상품개발',[
+            ['todo','① SKU별 매출·수익성 분석·저효율 SKU 정리·포트폴리오 재구성','연간 SKU 성과 분석 및 정비','BM · 상품개발'],
+            ['todo','② 신규 카테고리 검토·차년도 개발 계획 수립','차년도 제품 전략 방향 설계','BM · 상품개발']
+          ]],
+          ['패키지',[
+            ['todo','패키지 원가 개선·패밀리룩 체계 정비·생산 효율성 검토·차년도 패키지 개발 기준 수립','패키지 운영 체계 정비','패키지']
+          ]],
+          ['웹 · 콘텐츠디자인',[
+            ['todo','리뉴얼 적용 SKU 확대·우수사례 정리 및 가이드화·리뉴얼 성과분석','성과 분석 및 가이드 정립','웹 · 콘텐츠디자인']
+          ]],
+          ['콘텐츠 · 사진',[
+            ['todo','채널별 연출 가이드 적용 확대·비주얼 자산 확대 구축·에셋 라이브러리 정비','비주얼 자산 체계화','콘텐츠 · 사진']
+          ]]
+        ]
+      }
+    },
+    sales:{
+      name:'영업지원전략', color:'var(--sales)', pct:67,
+      desc:'채널별 영업활동을 지원해 브랜드 파이프라인의 유통 실행을 뒷받침한다.',
+      flow:['채널별 영업지원 체계 · 우선순위 확정','홈쇼핑·다이소 영업지원 완료','카선·무신사·PX 확장 · 이마트·트레이더스 신규 제안','채널 지원 체계 문서화 · 2027 설계'],
+      qd:{
+        q1:{status:'done',phase:'채널 우선순위 확정',
+          goal:'채널별 영업지원 체계 수립, 소재 유형 목록화, 우선순위 확정',
+          result:'홈쇼핑·다이소·카선·무신사·PX 우선순위 정의. 소재 목록화 완료. 프로세스 초안 수립.',
+          kpi:[['채널 우선순위','5개 확정'],['소재 유형 목록화','완료']],
+          good:['채널별 소재 유형 명확화'],
+          imp:['소재 납기 기준 미확립'],
+          carry:['납기 기준 2Q 정립'],
+          products:[{name:'프로페셔널 클리닉 라인',count:'4종',month:'1월',s:'done'},{name:'맨즈 다운펌·헤어 미스트',count:'2종',month:'1월',s:'done'},{name:'실크케라틴 컨디셔너',count:'1종',month:'2월',s:'done'},{name:'카밍세라 키즈 라인',count:'2종',month:'2월',s:'done'},{name:'리아비책 물염색+리뉴얼',count:'6종',month:'3월',s:'done'}]},
+        q2:{status:'done',phase:'홈쇼핑·다이소 지원 실행',
+          goal:'홈쇼핑 행사·납품 소재 지원 완료, 다이소 입점 소재·검수 대응, 납기 기준 정립',
+          result:'홈쇼핑 영업지원 완료. 다이소 입점 소재·검수 완료. 납기 준수율 94%. 소재 포맷 1차 표준화 완성.',
+          kpi:[['납기 준수율','94%'],['홈쇼핑·다이소 지원','완료'],['소재 표준화','1차 완성']],
+          good:['홈쇼핑 납기 준수','소재 포맷 표준화로 효율화'],
+          imp:['카선·무신사·PX 소재 사전 준비 부족'],
+          carry:['카선·무신사·PX 소재 체계 3Q 착수'],
+          products:[{name:'클리닉 약산성 샴푸(리뉴얼)',count:'1종',month:'4월',s:'done'},{name:'리아비책 팩폼',count:'2종',month:'6월',s:'done'},{name:'커버업 새치 마스카라',count:'2종',month:'6월',s:'done'}]},
+        q3:{status:'doing',phase:'채널 확장 지원 · 신규 채널 제안',
+          goal:'카선·무신사·PX 영업지원, 이마트·트레이더스·카카오 신규 제안, 바이오피엘 채널 입점 사전 준비',
+          result:'진행 중 — 카선·무신사 소재 대응 착수. 신규 채널 제안서 기획 중.',
+          kpi:[['카선·무신사·PX 지원','3채널 목표'],['신규 채널 제안','이마트·트레이더스·카카오'],['납기 준수율','95%+ 목표']],
+          good:[],imp:[],carry:[],
+          products:[{name:'카밍세라 청소년 샴푸 2X',count:'2종',month:'7월',s:'doing'},{name:'GWP 소용량(카밍·딥그린)',count:'5종',month:'7월',s:'doing'},{name:'리아비책 한방 라인',count:'3종',month:'9월',s:'doing'},{name:'실크필(다이소) 라인',count:'6종',month:'9월',s:'doing'}]},
+        q4:{status:'todo',phase:'채널 지원 체계 문서화 · 2027 설계',
+          goal:'채널별 영업지원 운영 기준 문서화, 연간 성과 정리, 2027 체계 설계',
+          result:'— (예정)',
+          kpi:[['운영 기준 문서','완료'],['2027 체계','초안']],
+          good:[],imp:[],carry:[],
+          products:[{name:'바이오피엘 론칭 라인',count:'5종',month:'10월',s:'todo'},{name:'눈썹염모제 기획세트',count:'1종',month:'10월',s:'todo'},{name:'새치염색 듀얼샤쉐',count:'2종',month:'11월',s:'todo'}]}
+      },
+      tasks:[
+        ['브랜드개발실 공통 핵심과제',[
+          ['done','홈쇼핑·다이소 영업지원 완료','행사·입점·소재·검수 완료','공통'],
+          ['doing','카선·무신사·PX 영업지원 확장','소재 대응 및 입점 지원 진행 중','공통'],
+          ['doing','이마트·트레이더스·카카오 신규 제안','신규 채널 제안서 기획 및 작성 중','공통'],
+          ['todo','바이오피엘 채널 입점 사전 준비','Q4 런칭 대비 입점 제안 착수','공통']
+        ]],
+        ['BM팀',[
+          ['done','홈쇼핑 소구점 정리 완료','브랜드·제품 메시지 제공 완료','BM 브랜드'],
+          ['doing','카선·무신사 소구점 작성','신규 채널별 메시지 준비','BM 브랜드'],
+          ['todo','이마트·트레이더스 제안서','신규 채널 제안서 기획','BM 브랜드']
+        ]],
+        ['패키지팀',[
+          ['done','홈쇼핑·다이소 패키지·표기 완료','입점사 요청 반영 완료','패키지'],
+          ['doing','카선·무신사 채널 패키지 대응','신규 채널 기준 파악 및 대응','패키지']
+        ]],
+        ['웹디자인팀',[
+          ['done','홈쇼핑 비주얼·다이소 소재 완료','완료','브랜드디자인'],
+          ['doing','카선·무신사·PX 채널 소재','신규 채널 소재 제작 중','콘텐츠디자인'],
+          ['todo','이마트·트레이더스 소재 준비','신규 제안용 소재','콘텐츠디자인']
+        ]],
+        ['콘텐츠팀',[
+          ['done','홈쇼핑 영상 납품 완료','행사 영상 완료','미디어콘텐츠'],
+          ['todo','카선·무신사 라이브·숏폼 대응','신규 채널 영상 체계','미디어콘텐츠']
+        ]]
+      ],
+      qdTasks:{
+        q1:[
+          ['BM · 브랜드마케팅',[
+            ['done','채널별 브랜드 적합성·입점 가능성 검토','입점 제안서 기획','BM · 브랜드마케팅']
+          ]],
+          ['BM · 상품개발',[
+            ['done','입점 가능 SKU 검토 및 채널 특성 기반 상품 구성안 설계','채널별 최적 상품 구성 설계','BM · 상품개발']
+          ]],
+          ['패키지',[
+            ['done','입점 채널별 패키지 요구사항 검토·진열·배송·단가 기준 확인','채널 대응 패키지 구조 파악','패키지']
+          ]],
+          ['웹 · 콘텐츠디자인',[
+            ['done','채널별 행사 유형 정리·배너/썸네일 운영 기준 정립·프로모션 디자인 템플릿 구축','채널 운영 콘텐츠 체계 구축','웹 · 콘텐츠디자인']
+          ]],
+          ['콘텐츠 · 영상',[
+            ['done','방송 포맷 정리·운영 프로세스 구축','라이브커머스 운영 기준 체계 초안','콘텐츠 · 영상']
+          ]]
+        ],
+        q2:[
+          ['BM · 브랜드마케팅',[
+            ['done','채널별 입점 제안서 및 운영자료 고도화','채널 담당자 커뮤니케이션 및 입점 대응','BM · 브랜드마케팅']
+          ]],
+          ['BM · 상품개발',[
+            ['done','입점 채널별 상품 구성 확정·가격·구성·용량 등 채널 적합성 검토','채널 적합성 상품 구성 확정','BM · 상품개발']
+          ]],
+          ['패키지',[
+            ['done','입점용 패키지/기획세트 디자인 대응·채널별 구성품·단상자·라벨 적용','입점 패키지 제작 대응','패키지']
+          ]],
+          ['콘텐츠 · 영상',[
+            ['done','신규 연출/구도/촬영 방식 디벨롭','라이브커머스 연출 기준 고도화','콘텐츠 · 영상']
+          ]]
+        ],
+        q3:[
+          ['BM · 브랜드마케팅',[
+            ['doing','채널별 판매 성과 분석·리뷰/VOC 기반 개선 포인트 도출','채널 특성별 운영 전략 보완','BM · 브랜드마케팅']
+          ]],
+          ['BM · 상품개발',[
+            ['doing','채널 반응 기반 상품 구성 개선','전환율·재구매 관점의 상품 운영 보완','BM · 상품개발']
+          ]],
+          ['패키지',[
+            ['doing','판매채널별 패키지 사용성 개선·리뷰/VOC 기반 패키지 보완','채널 피드백 반영 패키지 개선','패키지']
+          ]],
+          ['콘텐츠 · 영상',[
+            ['doing','채널별 정기 방송·행사 연계 방송·전환율 개선','라이브커머스 성과 분석 및 개선','콘텐츠 · 영상']
+          ]]
+        ],
+        q4:[
+          ['BM · 브랜드마케팅',[
+            ['todo','채널별 매출/반응 분석·성장 채널 선정·차년도 채널 확장 전략 수립','연간 채널 전략 수립','BM · 브랜드마케팅']
+          ]],
+          ['BM · 상품개발',[
+            ['todo','채널별 매출/수익성 기반 SKU 정리·차년도 입점 상품군 및 주력 SKU 재설계','차년도 입점 SKU 전략','BM · 상품개발']
+          ]],
+          ['패키지',[
+            ['todo','차년도 채널 대응 패키지 기준 수립·생산 효율 및 운영 기준 정비','패키지 운영 기준 정비','패키지']
+          ]],
+          ['웹 · 콘텐츠디자인',[
+            ['todo','우수사례 정리·운영 가이드 제작·템플릿 라이브러리 구축','디자인 운영 체계 고도화','웹 · 콘텐츠디자인']
+          ]],
+          ['콘텐츠 · 영상',[
+            ['todo','방송 매뉴얼 구축·차년도 운영 계획 수립','라이브커머스 운영 체계 완성','콘텐츠 · 영상']
+          ]]
+        ]
+      }
+    },
+    content:{
+      name:'콘텐츠전략', color:'var(--cont)', pct:59,
+      desc:'런칭·채널 콘텐츠를 기획·제작해 브랜드 파이프라인의 표현 기반을 구축한다.',
+      flow:['콘텐츠 방향·톤앤무드·포맷 기준 정의','리아비책 런칭 콘텐츠 · 채널 소재 완료','숏폼·AI 루틴 정착 · 바이오피엘 콘텐츠 준비','바이오피엘 런칭 콘텐츠 · 자산 아카이빙'],
+      qd:{
+        q1:{status:'done',phase:'방향 수립',
+          goal:'채널별 콘텐츠 방향·톤앤무드 수립, 비주얼·영상·SNS 포맷 정의',
+          result:'콘텐츠 가이드 초안 완성. 채널별 포맷 표준 정의. 리아비책 비주얼 방향 확정.',
+          kpi:[['콘텐츠 가이드','초안 완료'],['채널 포맷 정의','완료']],
+          good:['톤앤무드 조기 정의로 소재 일관성 확보'],
+          imp:['AI 활용 기준 구체화 지연'],
+          carry:['AI 기준 2Q 착수'],
+          products:[{name:'프로페셔널 클리닉 라인',count:'4종',month:'1월',s:'done'},{name:'맨즈 다운펌·헤어 미스트',count:'2종',month:'1월',s:'done'},{name:'실크케라틴 컨디셔너',count:'1종',month:'2월',s:'done'},{name:'카밍세라 키즈 라인',count:'2종',month:'2월',s:'done'},{name:'리아비책 물염색+리뉴얼',count:'6종',month:'3월',s:'done'}]},
+        q2:{status:'done',phase:'런칭 콘텐츠 제작',
+          goal:'리아비책 런칭 콘텐츠 기본 패키지 제작, 홈쇼핑·다이소 소재 대응, SNS 루틴 시작',
+          result:'런칭 콘텐츠 기본 패키지 완료. 채널별 소재 대응 완료. SNS 루틴 착수.',
+          kpi:[['콘텐츠 제작 완료율','59%'],['채널 소재 대응','완료'],['SNS 루틴','착수']],
+          good:['런칭 콘텐츠 납기 준수','소재 포맷 표준화 효과'],
+          imp:['숏폼 루틴 본격화 지연','AI 비주얼 기준 미확정'],
+          carry:['AI·숏폼 루틴 3Q 본격화'],
+          products:[{name:'클리닉 약산성 샴푸(리뉴얼)',count:'1종',month:'4월',s:'done'},{name:'리아비책 팩폼',count:'2종',month:'6월',s:'done'},{name:'커버업 새치 마스카라',count:'2종',month:'6월',s:'done'}]},
+        q3:{status:'doing',phase:'숏폼·AI 루틴 정착 · 바이오피엘 콘텐츠 준비',
+          goal:'숏폼·AI 비주얼 루틴 주기화, 카선·무신사·PX 채널 소재 대응, 바이오피엘 런칭 콘텐츠 기획',
+          result:'진행 중 — 숏폼 루틴 시범 운영 착수. AI 비주얼 기준 수립 중. 바이오피엘 콘텐츠 기획 착수.',
+          kpi:[['숏폼 루틴','주 1-2회 목표'],['AI 비주얼','기준 수립'],['바이오피엘 콘텐츠','착수']],
+          good:[],imp:[],carry:[],
+          products:[{name:'카밍세라 청소년 샴푸 2X',count:'2종',month:'7월',s:'doing'},{name:'GWP 소용량(카밍·딥그린)',count:'5종',month:'7월',s:'doing'},{name:'리아비책 한방 라인',count:'3종',month:'9월',s:'doing'},{name:'실크필(다이소) 라인',count:'6종',month:'9월',s:'doing'}]},
+        q4:{status:'todo',phase:'바이오피엘 런칭 콘텐츠 · 자산 아카이빙',
+          goal:'바이오피엘 런칭 콘텐츠 제작, 콘텐츠 자산 아카이빙, 2027 기획',
+          result:'— (예정)',
+          kpi:[['바이오피엘 런칭 콘텐츠','완료'],['아카이빙','완료'],['2027 기획','초안']],
+          good:[],imp:[],carry:[],
+          products:[{name:'바이오피엘 론칭 라인',count:'5종',month:'10월',s:'todo'},{name:'눈썹염모제 기획세트',count:'1종',month:'10월',s:'todo'},{name:'새치염색 듀얼샤쉐',count:'2종',month:'11월',s:'todo'}]}
+      },
+      tasks:[
+        ['브랜드개발실 공통 핵심과제',[
+          ['done','리아비책 런칭 콘텐츠 기본 패키지','비주얼·영상·채널 소재 완료','공통'],
+          ['doing','숏폼·AI 비주얼 루틴 구축','주 1-2회 숏폼 루틴 정착 / AI 기준 수립','공통'],
+          ['doing','카선·무신사·PX 채널 소재 대응','신규 채널 영업 지원 소재 제작','공통'],
+          ['todo','바이오피엘 런칭 콘텐츠 기획','Q4 런칭 대비 콘텐츠 기획 착수','공통']
+        ]],
+        ['웹디자인팀',[
+          ['doing','SNS·채널 포맷 구축','비주얼 시스템 표준화 중','콘텐츠디자인'],
+          ['doing','배너 템플릿 정비','반복 소재 효율화','브랜드디자인']
+        ]],
+        ['콘텐츠팀',[
+          ['doing','숏폼 루틴 제작','주 1회 이상 제작 목표','미디어콘텐츠'],
+          ['doing','AI 비주얼 기준 정립','AI 활용 품질 기준 확립','비주얼콘텐츠'],
+          ['todo','바이오피엘 콘텐츠 방향','Q4 런칭 대비 기획','미디어콘텐츠']
+        ]]
+      ],
+      qdTasks:{
+        q1:[
+          ['BM · 브랜드마케팅',[
+            ['done','브랜드별 콘텐츠 목표 설정·채널별 운영 전략 수립·콘텐츠 캘린더 구축','콘텐츠 운영 체계 기반 구축','BM · 브랜드마케팅']
+          ]],
+          ['웹 · 콘텐츠디자인',[
+            ['done','신규 브랜드별 콘텐츠 포맷 정의·광고소재 유형 정리','콘텐츠별 시각 표현 방식 연구, 브랜드 콘텐츠 제작 가이드 구축','웹 · 콘텐츠디자인']
+          ]],
+          ['콘텐츠 · 영상',[
+            ['done','브랜디드 영상 콘텐츠 방향성 정립·신규 영상 포맷 발굴 및 파일럿 제작','영상 콘텐츠 기반 마련','콘텐츠 · 영상']
+          ]]
+        ],
+        q2:[
+          ['BM · 브랜드마케팅',[
+            ['done','브랜드 스토리 콘텐츠 기획·시즌/이벤트 콘텐츠 운영·채널별 콘텐츠 발행 관리','채널별 콘텐츠 운영 실행','BM · 브랜드마케팅']
+          ]],
+          ['웹 · 콘텐츠디자인',[
+            ['done','브랜드별 광고소재 제작·채널 특성별 소재 개발·콘텐츠 반응 데이터 수집','광고소재 제작 및 성과 수집','웹 · 콘텐츠디자인']
+          ]],
+          ['콘텐츠 · 영상',[
+            ['done','브랜드 스토리 영상 제작 확대','브랜드 서사 중심 영상 콘텐츠 확장','콘텐츠 · 영상']
+          ]]
+        ],
+        q3:[
+          ['BM · 브랜드마케팅',[
+            ['doing','채널별 핵심 콘텐츠 확대·고객 반응 기반 콘텐츠 개선·콘텐츠 운영 효율 개선','데이터 기반 콘텐츠 최적화','BM · 브랜드마케팅']
+          ]],
+          ['웹 · 콘텐츠디자인',[
+            ['doing','성과 우수 콘텐츠 시리즈화·브랜드별 콘텐츠 유형 확대','콘텐츠 고도화 및 확산','웹 · 콘텐츠디자인']
+          ]],
+          ['콘텐츠 · 영상',[
+            ['doing','채널별 숏폼/롱폼 콘텐츠 확대·브랜디드 콘텐츠 시리즈 운영·광고소재 영상 제작 확대','영상 콘텐츠 유형 다각화','콘텐츠 · 영상']
+          ]]
+        ],
+        q4:[
+          ['BM · 브랜드마케팅',[
+            ['todo','콘텐츠 유형별 성과 분석·우수 콘텐츠 자산화·차년도 콘텐츠 전략 수립','콘텐츠 성과 정리 및 차년도 설계','BM · 브랜드마케팅']
+          ]],
+          ['웹 · 콘텐츠디자인',[
+            ['todo','고성과 콘텐츠 유형 정리·콘텐츠 라이브러리 구축·브랜드별 콘텐츠 운영 가이드 제작','콘텐츠 자산화 및 가이드 완성','웹 · 콘텐츠디자인']
+          ]],
+          ['콘텐츠 · 영상',[
+            ['todo','영상 콘텐츠 라이브러리 구축·우수 영상 사례 분석 및 정리','콘텐츠 운영 가이드 제작, 차년도 영상 콘텐츠 전략 수립','콘텐츠 · 영상']
+          ]]
+        ]
+      }
+    }
+  },
+  monthly:[
+    {team:'BM팀',tc:'var(--brand)',tasks:[
+      {t:'바이오피엘 포지셔닝 최종 확정 — Q4 런칭 기준일 연동',s:'doing'},
+      {t:'이마트·트레이더스 신규 채널 제안서 기획',s:'doing'},
+      {t:'카선·무신사 소구점 메시지 작성',s:'todo'},
+    ]},
+    {team:'패키지팀',tc:'var(--prod)',tasks:[
+      {t:'바이오피엘 패키지 방향 최종 확정',s:'doing'},
+      {t:'카밍세라 GWP 패키지 검수 대응',s:'doing'},
+      {t:'실크필(다이소) 패키지 중간 검수',s:'todo'},
+    ]},
+    {team:'웹디자인팀',tc:'var(--sales)',tasks:[
+      {t:'카선·무신사·PX 채널 소재 1차 납품',s:'doing'},
+      {t:'숏폼·SNS 템플릿 포맷 업데이트',s:'doing'},
+      {t:'이마트 제안용 브랜드 비주얼 준비',s:'todo'},
+    ]},
+    {team:'콘텐츠팀',tc:'var(--cont)',tasks:[
+      {t:'숏폼 1회 이상 제작·업로드 (루틴 시작)',s:'doing'},
+      {t:'AI 비주얼 기준안 작성 및 팀 공유',s:'todo'},
+      {t:'바이오피엘 런칭 콘텐츠 기획 착수',s:'todo'},
+    ]}
+  ]
+};
+
+/* ══════════════════════════════════
+   앙또미뇽 DATA
+══════════════════════════════════ */
+const antoData = {
+  name:'앙또미뇽', bc:'#f2bd48', bv:'var(--anto)',
+  premise:'매터니티 카테고리 신설을 중심으로 브랜드 포트폴리오를 넓히고, 자사몰 개편을 통해 브랜드 직접 운영 기반을 구축한다.',
+  summary:{
+    headline:'1분기 매터니티 컨셉 정립·2분기 신제품 3종 입고·자사몰 개편 전략 확정. 3분기 현재 자사몰 1차 리뉴얼 오픈 목표.',
+    cards:[
+      {val:'3종',label:'Q2 신제품 입고',sub:'잔머리왁스밤·선쿠션·베리어-엠 크림'},
+      {val:'3분기 진행 중',label:'자사몰 리뉴얼 진행',sub:'전략·기획·컨셉 확정, 가시안 제작 중'},
+      {val:'3종+',label:'Q3 출시 목표',sub:'키즈 샴푸·바디워시·타올리스바디로션'},
+      {val:'Q4',label:'매터니티·디바이스',sub:'매터니티 라인·키즈 헤어드라이기 목표'}
+    ]
+  },
+  overall: 34,
+  stratPct:{brand:42,product:35,sales:22,content:38},
+  prodStats:{launched:3,doing:5,planned:5},
+  keyStatus:[
+    '3분기 현재 — 자사몰 1차 리뉴얼 오픈 최종 준비 중',
+    '키즈 신제품 3종 Q3 입고 진행 중',
+    'Q4 목표: 매터니티 라인업 + 키즈 헤어드라이기 런칭',
+  ],
+  checkpoints:[
+    {c:'var(--bad)',t:'자사몰 1차 리뉴얼 Q3 오픈 일정 관리 필요'},
+    {c:'var(--warn)',t:'BI/VI 리뉴얼 방향 확정 후 패키지·자사몰 연동'},
+    {c:'var(--warn)',t:'매터니티 SKU 스펙 확정 착수 필요'},
+    {c:'var(--brand)',t:'디바이스 키즈 드라이기 견적·스펙 확정'},
+  ],
+  flow:[
+    {q:'1분기',status:'done',qc:'var(--brand)',title:'매터니티 카테고리 설계',items:['✓ 시장 조사·분석 완료','✓ 컨셉·포지셔닝 정립','✓ BI/VI 리뉴얼 방향 탐색']},
+    {q:'2분기',status:'done',qc:'var(--warn)',title:'제품 개발·디바이스 착수',items:['✓ 신제품 3종 입고 완료','✓ 자사몰 개편 전략·컨셉 확정','✓ 디바이스 가시안 완료']},
+    {q:'3분기',status:'doing',qc:'var(--sales)',title:'자사몰 개편 · 신규 SKU 출시',items:['◐ 자사몰 1차 리뉴얼 오픈 준비','◐ 키즈 샴푸·바디워시·타올리스 입고','◐ 매터니티 Q4 개발 착수'],now:true},
+    {q:'4분기',status:'todo',qc:'var(--cont)',title:'안정화 · 고도화',items:['① 디바이스 키즈 드라이기 런칭','② 매터니티 라인업 완성','③ 차년도 전략 설계']}
+  ],
+  strategies:{
+    brand:{
+      name:'브랜드전략', color:'var(--brand)', pct:42,
+      desc:'매터니티 컨셉·포지셔닝 정립과 BI/VI 리뉴얼을 통해 브랜드 아이덴티티 기반을 재구축한다.',
+      flow:['매터니티 컨셉·포지셔닝 정립','BI/VI 리뉴얼 방향 확정·가시안','자사몰 개편 연계 BI/VI 반영','브랜드 포트폴리오 체계 완성'],
+      qd:{
+        q1:{status:'done',phase:'카테고리 컨셉 정립',
+          goal:'매터니티 카테고리 시장 조사 및 컨셉·포지셔닝 정립, BI/VI 리뉴얼 방향 탐색',
+          result:'매터니티 시장 조사 완료. 임산부 타깃 컨셉·포지셔닝 정립. BI/VI 리뉴얼 방향 탐색 착수.',
+          kpi:[['매터니티 컨셉','정립 완료'],['BI/VI 리뉴얼 방향','탐색 완료']],
+          good:['매터니티 카테고리 컨셉 명확화'],
+          imp:['BI/VI 리뉴얼 구체적 방향 미확정'],
+          carry:['BI/VI 방향 2Q 확정'],
+          products:[]},
+        q2:{status:'done',phase:'BI/VI 리뉴얼 착수',
+          goal:'BI/VI 리뉴얼 방향 확정 및 가시안 제작, 자사몰 개편 연계 비주얼 기반 구축',
+          result:'BI/VI 리뉴얼 방향 정의 중. 자사몰 개편 전략·기획·컨셉 확정. 가시안 제작 착수.',
+          kpi:[['자사몰 컨셉','확정'],['가시안','제작 착수'],['BI/VI 방향','정의 중']],
+          good:['자사몰 개편 컨셉 방향 조기 확정'],
+          imp:['BI/VI 리뉴얼 최종 확정 지연'],
+          carry:['BI/VI 최종 확정 3Q'],
+          products:[{name:'잔머리 스틱 헤어 왁스밤',count:'1종',month:'6월',s:'done'},{name:'판테놀 무기자차 선쿠션',count:'1종',month:'6월',s:'done'},{name:'베리어-엠 크림 GWP',count:'1종',month:'6월',s:'done'}]},
+        q3:{status:'doing',phase:'자사몰 리뉴얼 오픈 · BI/VI 확정',
+          goal:'자사몰 1차 리뉴얼 오픈, BI/VI 리뉴얼 최종 확정 및 패키지 연동',
+          result:'진행 중 — 자사몰 가시안 기반 구현 중. BI/VI 방향 최종 검토 중.',
+          kpi:[['자사몰 1차 리뉴얼','Q3 오픈 목표'],['BI/VI 최종 확정','완료 목표']],
+          good:[],imp:[],carry:[],
+          products:[{name:'베리어-엠 로션·바스&샴푸 GWP',count:'2종',month:'7월',s:'doing'},{name:'앙또미뇽 키즈 라인',count:'3종',month:'9월',s:'doing'}]},
+        q4:{status:'todo',phase:'브랜드 포트폴리오 체계 완성',
+          goal:'매터니티 런칭 연계 BI/VI 반영 완료, 브랜드 포트폴리오 체계 완성, 차년도 설계',
+          result:'— (예정)',
+          kpi:[['BI/VI 반영','완료'],['포트폴리오 체계','완성'],['차년도 설계','초안']],
+          good:[],imp:[],carry:[],
+          products:[{name:'아토 세럼 미스트',count:'1종',month:'10월',s:'todo'},{name:'키즈 컬링에센스',count:'1종',month:'10월',s:'todo'},{name:'매터니티 재생크림',count:'1종',month:'10월',s:'todo'},{name:'매터니티 마스크팩',count:'1종',month:'11월',s:'todo'},{name:'매터니티 바디핏 오일젤',count:'1종',month:'11월',s:'todo'}]}
+      },
+      tasks:[
+        ['브랜드개발실 공통 핵심과제',[
+          ['done','매터니티 컨셉·포지셔닝 정립','임산부 타깃 컨셉 완료','공통'],
+          ['doing','BI/VI 리뉴얼 최종 확정','리뉴얼 방향 확정 및 가시안 완료 목표','공통'],
+          ['doing','자사몰 개편 연계 비주얼 기반','자사몰 리뉴얼 방향과 BI/VI 정렬','공통'],
+          ['todo','패키지·콘텐츠 BI/VI 연동','확정 후 전면 적용','공통']
+        ]],
+        ['BM팀',[
+          ['done','매터니티 시장 조사·방향 수립','완료','BM 브랜드'],
+          ['doing','BI/VI 리뉴얼 방향 확정','가시안 검토 중','BM 브랜드'],
+          ['todo','매터니티 브랜드 가이드','확정 후 배포','BM 브랜드']
+        ]],
+        ['웹디자인팀',[
+          ['doing','자사몰 비주얼 기준 수립','리뉴얼 방향 연계','브랜드디자인'],
+          ['todo','매터니티 소재 포맷 설계','신규 카테고리 소재','콘텐츠디자인']
+        ]]
+      ],
+      qdTasks:{
+        q1:[
+          ['BM · 브랜드마케팅',[
+            ['done','카테고리 확장 검토 및 브랜드 역할 정의·브랜드 메시지·가치관 재정립·자사몰 콘텐츠 방향성 검토','브랜드 아이덴티티 재정립','BM · 브랜드마케팅'],
+            ['done','매터니티 시장성 & 포지셔닝 분석 및 방향성 도출·라인 퍼포먼스 및 유통 신제품 아이디어 기획','매터니티 카테고리 기초 전략 수립','BM · 브랜드마케팅']
+          ]],
+          ['웹 · BX',[
+            ['done','리뉴얼 방향성 수립·카페24 템플릿 조사·카테고리 및 정보구조분석·기초안 설계','자사몰 개편 기초 설계','웹 · BX']
+          ]],
+          ['콘텐츠 · 사진',[
+            ['done','AI 기반 브랜드 촬영 컨셉 & 런칭 비주얼 개발','AI 기술 활용 촬영 기반 마련','콘텐츠 · 사진']
+          ]],
+          ['콘텐츠 · 영상',[
+            ['done','AI 기반 신규 툴 & 엔진 사용/적합성 테스트를 통한 실무 연계','실무 연계 기반 마련 완료','콘텐츠 · 영상']
+          ]]
+        ],
+        q2:[
+          ['BM · 브랜드마케팅',[
+            ['done','브랜드 메시지/가치관/서사 기반 스토리텔링 정립·채널별 확장 적용·자사몰 콘텐츠 기획','브랜드 스토리텔링 정립','BM · 브랜드마케팅'],
+            ['done','매터니티 라인업 정체성 디벨롭 & 프로덕트맵 구체화','타겟 기반 시장조사, 소구점 도출, 채널별 키워드 조사','BM · 브랜드마케팅']
+          ]],
+          ['패키지',[
+            ['done','라인업 체계 설계·패키지 패밀리룩 방향 설정·디자인 차별화 전략 수립','매터니티 패키지 비주얼 방향성 정립','패키지']
+          ]],
+          ['웹 · BX',[
+            ['done','디자인 컨셉 기획·방향성 도출·가시안 테스트','자사몰 리뉴얼 비주얼 방향성 설계','웹 · BX']
+          ]],
+          ['콘텐츠 · 사진',[
+            ['done','AI 생성+가공 기술 고도화·모델컷 중심 기술 고도화','AI 기반 비주얼 품질 향상','콘텐츠 · 사진']
+          ]],
+          ['콘텐츠 · 영상',[
+            ['done','브랜드/라인업/채널별 콘텐츠 가이드 제작 & 템플릿 설계','콘텐츠 가이드 & 템플릿 완료','콘텐츠 · 영상']
+          ]]
+        ],
+        q3:[
+          ['BM · 브랜드마케팅',[
+            ['doing','브랜드 아이덴티티에 기반한 페이지 내용 설계·브랜드 스토리 확장 연계','자사몰 브랜드 서사 반영','BM · 브랜드마케팅'],
+            ['doing','매터니티 라인업 SKU별 포지셔닝·마케팅 전략 설계 지원','SKU별 핵심 효능·타겟·정의, 채널별 USP 및 커뮤니케이션 메시지 설계','BM · 브랜드마케팅']
+          ]],
+          ['웹 · BX',[
+            ['doing','자사몰 페이지 구조 설계 및 UI 디자인 구축','자사몰 1차 리뉴얼 오픈 목표','웹 · BX']
+          ]],
+          ['콘텐츠 · 사진',[
+            ['doing','신규 비주얼 컨셉 디렉팅 + 컨셉 설계 + 브랜드 비주얼 자산 확보','브랜드 비주얼 자산 확보','콘텐츠 · 사진']
+          ]]
+        ],
+        q4:[
+          ['BM · 브랜드마케팅',[
+            ['todo','고객 반응 분석 기반 메시지 개선·브랜드 콘텐츠 최적화','데이터 기반 브랜드 메시지 정제','BM · 브랜드마케팅'],
+            ['todo','매터니티 라인 운영 전략 고도화 및 확장 검토','초기 반응 및 시장성 분석, SKU 운영 전략 점검, 차년도 라인 확장 방향 검토','BM · 브랜드마케팅']
+          ]],
+          ['패키지',[
+            ['todo','패키지 사용성 점검·원가 및 생산 효율 검토·차년도 패키지 개발 기준 수립','패키지 운영 체계 정비','패키지']
+          ]],
+          ['웹 · BX',[
+            ['todo','앙또미뇽 자사몰 콘텐츠 디벨롭','리뉴얼 이후 지속적 콘텐츠 고도화','웹 · BX']
+          ]]
+        ]
+      }
+    },
+    product:{
+      name:'제품전략', color:'var(--prod)', pct:35,
+      desc:'매터니티 카테고리 라인업과 키즈 확장 SKU를 개발해 브랜드 포트폴리오를 확장한다.',
+      flow:['매터니티 카테고리 SKU 기획','신제품 3종 입고·디바이스 기획 착수','키즈 신제품 입고·매터니티 Q4 개발 착수','매터니티 라인업 완성·디바이스 런칭'],
+      qd:{
+        q1:{status:'done',phase:'카테고리 SKU 기획',
+          goal:'매터니티 카테고리 SKU 방향 기획, 스킨케어·바디케어·두피케어·핸드풋케어 프로덕트맵 수립',
+          result:'매터니티 카테고리 4개 라인 방향 확정. 스킨케어 우선 착수 결정.',
+          kpi:[['매터니티 카테고리','4라인 방향'],['우선 착수 라인','확정']],
+          good:['카테고리 구조 조기 확정'],
+          imp:['SKU 수·스펙 구체화 지연'],
+          carry:['SKU 스펙 2Q 착수'],
+          products:[]},
+        q2:{status:'done',phase:'신제품 입고·디바이스 기획',
+          goal:'신제품 3종 Q2 입고 완료, 디바이스 가시안 제작, 매터니티 SKU 방향 확정',
+          result:'신제품 3종 입고 완료. 디바이스 가시안 완료·스펙 도출 착수. 매터니티 SKU 방향 초안 수립.',
+          kpi:[['Q2 신제품','3종 완료'],['디바이스 가시안','완료'],['매터니티 SKU 방향','초안']],
+          good:['Q2 신제품 납기 준수'],
+          imp:['매터니티 SKU 스펙 구체화 지연'],
+          carry:['매터니티 SKU 3Q 착수'],
+          products:[{name:'잔머리 스틱 헤어 왁스밤',count:'1종',month:'6월',s:'done'},{name:'판테놀 무기자차 선쿠션',count:'1종',month:'6월',s:'done'},{name:'베리어-엠 크림 GWP',count:'1종',month:'6월',s:'done'}]},
+        q3:{status:'doing',phase:'키즈 신제품 입고·매터니티 Q4 착수',
+          goal:'키즈 샴푸·바디워시·타올리스바디로션 Q3 입고, 매터니티 Q4 개발 착수, 디바이스 스펙·견적 확정',
+          result:'진행 중 — 키즈 신제품 입고 준비 중. 매터니티 스펙 확정 착수. 디바이스 견적 도출 중.',
+          kpi:[['키즈 신제품','3종 Q3 입고'],['매터니티 개발','착수'],['디바이스 스펙','확정']],
+          good:[],imp:[],carry:[],
+          products:[{name:'베리어-엠 로션·바스&샴푸 GWP',count:'2종',month:'7월',s:'doing'},{name:'앙또미뇽 키즈 라인',count:'3종',month:'9월',s:'doing'}]},
+        q4:{status:'todo',phase:'매터니티 라인업 완성·디바이스 런칭',
+          goal:'매터니티 재생크림·바디핏오일젤·튼살크림 출시, 디바이스 런칭',
+          result:'— (예정)',
+          kpi:[['매터니티 SKU','3종+ 목표'],['디바이스','Q4 런칭'],['아토패치 리뉴얼','완료']],
+          good:[],imp:[],carry:[],
+          products:[{name:'아토 세럼 미스트',count:'1종',month:'10월',s:'todo'},{name:'키즈 컬링에센스',count:'1종',month:'10월',s:'todo'},{name:'매터니티 재생크림',count:'1종',month:'10월',s:'todo'},{name:'매터니티 마스크팩',count:'1종',month:'11월',s:'todo'},{name:'매터니티 바디핏 오일젤',count:'1종',month:'11월',s:'todo'}]}
+      },
+      tasks:[
+        ['브랜드개발실 공통 핵심과제',[
+          ['done','신제품 3종 Q2 입고 완료','잔머리왁스밤·선쿠션·베리어-엠 크림','공통'],
+          ['doing','키즈 신제품 3종 Q3 입고','샴푸·바디워시·타올리스바디로션','공통'],
+          ['doing','디바이스 스펙·견적 확정','키즈 헤어드라이기 Q4 목표','공통'],
+          ['todo','매터니티 스킨케어·바디케어 착수','재생크림·바디핏오일젤 Q4 목표','공통']
+        ]],
+        ['BM팀',[
+          ['done','신제품 SKU 방향 확정','3종 구성 완료','BM 상품'],
+          ['doing','키즈 확장 SKU 기획','샴푸·바디워시·로션','BM 상품'],
+          ['todo','매터니티 라인업 SKU 기획','스킨·바디·두피·핸드풋케어','BM 상품']
+        ]],
+        ['패키지팀',[
+          ['done','Q2 신제품 패키지 납품','완료','패키지'],
+          ['doing','키즈 신제품 패키지','Q3 납품 준비','패키지'],
+          ['todo','매터니티 패키지 기획','BI/VI 확정 후 연동','패키지']
+        ]]
+      ],
+      qdTasks:{
+        q1:[
+          ['BM · 상품개발',[
+            ['done','신규 퍼포먼스/유통 제품 제안','제품 포트폴리오 설계 및 신규 기회 발굴','BM · 상품개발']
+          ]],
+          ['패키지',[
+            ['done','굿즈(세안밴드, 가방-파우치) 신규 패키지 비주얼 방향성 도출 및 상품 디자인','굿즈 패키지 컨셉 기획','패키지']
+          ]],
+          ['콘텐츠 · 사진',[
+            ['done','제품컷/모델컷/누끼컷 촬영 & 보정 가이드 구축','촬영 기준 체계 완성','콘텐츠 · 사진']
+          ]]
+        ],
+        q2:[
+          ['BM · 상품개발',[
+            ['done','신규 SKU 기획 및 개발 지원·시장성·상품성 검토·원가 구조 및 생산 적합성 검토','신규 SKU 개발 검증','BM · 상품개발']
+          ]],
+          ['패키지',[
+            ['done','키즈 헤어드라이기 신규 디바이스 비주얼 방향성 도출 및 가시안 작업','디바이스 패키지 컨셉 기획','패키지']
+          ]],
+          ['콘텐츠 · 사진',[
+            ['done','트렌드 기반 제품 연출 방식 개발·공간감·구도·라이팅 디렉션 고도화','제품 연출 고도화','콘텐츠 · 사진']
+          ]]
+        ],
+        q3:[
+          ['BM · 상품개발',[
+            ['doing','SKU 구조 재정비 및 우선순위 조정·제품 경쟁력 개선 및 리뉴얼 반영','SKU 운영 최적화','BM · 상품개발']
+          ]],
+          ['패키지',[
+            ['doing','디바이스 구조·기술 변경 대응·사용성·원가·생산성 관점 개선','디바이스 패키지 개선 대응','패키지']
+          ]],
+          ['콘텐츠 · 사진',[
+            ['doing','채널별 비주얼 컨셉 차별화·콘텐츠 전반 확산','채널 특성 기반 비주얼 전략 적용','콘텐츠 · 사진']
+          ]]
+        ],
+        q4:[
+          ['BM · 상품개발',[
+            ['todo','SKU별 매출·수익성 분석·저효율 SKU 정리·포트폴리오 재구성','연간 SKU 성과 분석 및 정비','BM · 상품개발']
+          ]],
+          ['패키지',[
+            ['todo','패키지 원가 개선·패밀리룩 체계 정비·생산 효율성 검토·차년도 패키지 개발 기준 수립','패키지 운영 체계 정비','패키지']
+          ]],
+          ['콘텐츠 · 사진',[
+            ['todo','채널별 연출 가이드 적용 확대·비주얼 자산 확대 구축·에셋 라이브러리 정비','비주얼 자산 체계화','콘텐츠 · 사진']
+          ]]
+        ]
+      }
+    },
+    sales:{
+      name:'영업지원전략', color:'var(--sales)', pct:22,
+      desc:'자사몰 개편을 통한 직접 판매 채널 강화 및 외부 채널 확장 가능성을 탐색한다.',
+      flow:['자사몰 현황 점검·개편 방향 확정','자사몰 개편 전략 수립 지원','자사몰 1차 오픈·신규 SKU 입점','자사몰 안정화·외부 채널 탐색'],
+      qd:{
+        q1:{status:'done',phase:'자사몰 현황 점검',
+          goal:'앙또미뇽 자사몰 현황 점검, 개편 방향 설정, 신규 채널 가능성 탐색',
+          result:'자사몰 현황 점검 완료. 카테고리 구조·UX 문제점 파악. 개편 방향 확정.',
+          kpi:[['자사몰 현황','점검 완료'],['UX 문제점','파악 완료']],
+          good:['자사몰 문제점 조기 파악'],
+          imp:['외부 채널 진출 계획 미수립'],
+          carry:['자사몰 개편 2Q 착수'],
+          products:[]},
+        q2:{status:'done',phase:'자사몰 개편 지원',
+          goal:'자사몰 개편 전략 수립 지원, 신제품 3종 입고 지원',
+          result:'자사몰 개편 전략·기획 수립 지원. 신제품 3종 입고 지원 완료.',
+          kpi:[['자사몰 개편 전략','지원 완료'],['신제품 지원','3종']],
+          good:['전략·기획·디자인 협업 구조 형성'],
+          imp:['구체적 영업 KPI 미설정'],
+          carry:['자사몰 1차 리뉴얼 Q3 지원'],
+          products:[{name:'잔머리 스틱 헤어 왁스밤',count:'1종',month:'6월',s:'done'},{name:'판테놀 무기자차 선쿠션',count:'1종',month:'6월',s:'done'},{name:'베리어-엠 크림 GWP',count:'1종',month:'6월',s:'done'}]},
+        q3:{status:'doing',phase:'자사몰 1차 오픈·SKU 입점',
+          goal:'자사몰 1차 리뉴얼 오픈 지원, 키즈·매터니티 신규 SKU 입점 구조 확정',
+          result:'진행 중 — 자사몰 개편 구현 지원 중. 신규 카테고리 입점 구조 검토.',
+          kpi:[['자사몰 1차 오픈','Q3 목표'],['신규 SKU 입점','준비 중']],
+          good:[],imp:[],carry:[],
+          products:[{name:'베리어-엠 로션·바스&샴푸 GWP',count:'2종',month:'7월',s:'doing'},{name:'앙또미뇽 키즈 라인',count:'3종',month:'9월',s:'doing'}]},
+        q4:{status:'todo',phase:'자사몰 안정화·외부 채널 탐색',
+          goal:'자사몰 안정화 지원, 외부 채널 진출 가능성 탐색',
+          result:'— (예정)',
+          kpi:[['자사몰 안정화','지원'],['외부 채널','탐색']],
+          good:[],imp:[],carry:[],
+          products:[{name:'아토 세럼 미스트',count:'1종',month:'10월',s:'todo'},{name:'키즈 컬링에센스',count:'1종',month:'10월',s:'todo'},{name:'매터니티 재생크림',count:'1종',month:'10월',s:'todo'},{name:'매터니티 마스크팩',count:'1종',month:'11월',s:'todo'},{name:'매터니티 바디핏 오일젤',count:'1종',month:'11월',s:'todo'}]}
+      },
+      tasks:[
+        ['브랜드개발실 공통 핵심과제',[
+          ['done','자사몰 현황 점검 및 개편 방향 확정','완료','공통'],
+          ['doing','자사몰 1차 리뉴얼 오픈 지원','구현 지원 및 QA 진행 중','공통'],
+          ['todo','신규 카테고리 입점 구조 확정','매터니티·키즈 카테고리 입점 기획','공통']
+        ]],
+        ['BM팀',[
+          ['doing','자사몰 카테고리 구조 기획','매터니티·키즈 구조 설계','BM 브랜드'],
+          ['todo','외부 채널 진출 검토','홈쇼핑·온라인몰 가능성','BM 브랜드']
+        ]],
+        ['웹디자인팀',[
+          ['doing','자사몰 UX·정보구조 개선','직관성·접근성·전환율 개선','브랜드디자인'],
+          ['todo','자사몰 신규 카테고리 반영','매터니티 카테고리 구조','브랜드디자인']
+        ]]
+      ],
+      qdTasks:{
+        q1:[
+          ['콘텐츠 · 사진',[
+            ['done','라이브커머스 방송 포맷 정리·운영 프로세스 구축','라이브커머스 운영 기준 체계 초안 완료','콘텐츠 · 사진']
+          ]]
+        ],
+        q2:[
+          ['콘텐츠 · 사진',[
+            ['done','신규 연출/구도/촬영 방식 디벨롭','라이브커머스 스튜디오 연출 기준 고도화','콘텐츠 · 사진']
+          ]]
+        ],
+        q3:[
+          ['콘텐츠 · 사진',[
+            ['doing','채널별 정기 방송·행사 연계 방송·전환율 개선','라이브커머스 확대 운영 및 성과 개선','콘텐츠 · 사진']
+          ]]
+        ],
+        q4:[
+          ['웹 · 콘텐츠디자인',[
+            ['todo','리뉴얼 페이지 콘텐츠 제작 지원·상품 탐색·구매 전환 중심 콘텐츠 개선','자사몰 전환율 최적화 콘텐츠','웹 · 콘텐츠디자인']
+          ]],
+          ['콘텐츠 · 사진',[
+            ['todo','방송 매뉴얼 구축·차년도 운영 계획 수립','라이브커머스 운영 체계 완성','콘텐츠 · 사진']
+          ]]
+        ]
+      }
+    },
+    content:{
+      name:'콘텐츠전략', color:'var(--cont)', pct:38,
+      desc:'매터니티 타깃 콘텐츠 방향을 정립하고 자사몰 리뉴얼 연계 콘텐츠를 구축한다.',
+      flow:['매터니티 콘텐츠 방향·톤앤무드 수립','자사몰 개편 연계 비주얼 기획','자사몰 리뉴얼 오픈 연계·신규 SKU 소재','매터니티 런칭 콘텐츠·자산 구축'],
+      qd:{
+        q1:{status:'done',phase:'매터니티 콘텐츠 방향 수립',
+          goal:'임산부 타깃 톤앤무드 및 콘텐츠 방향 수립',
+          result:'매터니티 타깃 콘텐츠 방향 초안 완성. 자사몰 개편과 콘텐츠 방향 연계 착수.',
+          kpi:[['콘텐츠 방향','초안 완료']],
+          good:['매터니티 특화 콘텐츠 방향 조기 정의'],
+          imp:['BI/VI 리뉴얼 미확정으로 기준 불완전'],
+          carry:['BI/VI 확정 후 콘텐츠 기준 완성'],
+          products:[]},
+        q2:{status:'done',phase:'자사몰 연계 콘텐츠 기획',
+          goal:'자사몰 개편 연계 비주얼 기획, 신제품 3종 소재 제작',
+          result:'자사몰 연계 콘텐츠 기획 진행. 신제품 소재 대응.',
+          kpi:[['자사몰 연계 기획','진행'],['신제품 소재','대응']],
+          good:['자사몰 개편팀과 콘텐츠 방향 연계 착수'],
+          imp:['BI/VI 미확정으로 기준 불완전'],
+          carry:['자사몰 오픈 연계 콘텐츠 3Q'],
+          products:[{name:'잔머리 스틱 헤어 왁스밤',count:'1종',month:'6월',s:'done'},{name:'판테놀 무기자차 선쿠션',count:'1종',month:'6월',s:'done'},{name:'베리어-엠 크림 GWP',count:'1종',month:'6월',s:'done'}]},
+        q3:{status:'doing',phase:'자사몰 리뉴얼 오픈 연계·신규 SKU 소재',
+          goal:'자사몰 1차 리뉴얼 오픈 연계 콘텐츠 제작, 키즈·매터니티 신규 SKU 소재',
+          result:'진행 중 — 자사몰 오픈 연계 콘텐츠 기획 중. 신규 SKU 소재 착수.',
+          kpi:[['자사몰 리뉴얼 콘텐츠','Q3 제작'],['신규 SKU 소재','착수']],
+          good:[],imp:[],carry:[],
+          products:[{name:'베리어-엠 로션·바스&샴푸 GWP',count:'2종',month:'7월',s:'doing'},{name:'앙또미뇽 키즈 라인',count:'3종',month:'9월',s:'doing'}]},
+        q4:{status:'todo',phase:'매터니티 런칭 콘텐츠·자산 구축',
+          goal:'매터니티 런칭 콘텐츠 제작, 디바이스 런칭 연계, 콘텐츠 자산 아카이빙',
+          result:'— (예정)',
+          kpi:[['매터니티 런칭 콘텐츠','완료'],['아카이빙','완료']],
+          good:[],imp:[],carry:[],
+          products:[{name:'아토 세럼 미스트',count:'1종',month:'10월',s:'todo'},{name:'키즈 컬링에센스',count:'1종',month:'10월',s:'todo'},{name:'매터니티 재생크림',count:'1종',month:'10월',s:'todo'},{name:'매터니티 마스크팩',count:'1종',month:'11월',s:'todo'},{name:'매터니티 바디핏 오일젤',count:'1종',month:'11월',s:'todo'}]}
+      },
+      tasks:[
+        ['브랜드개발실 공통 핵심과제',[
+          ['done','매터니티 콘텐츠 방향 수립','임산부 타깃 톤앤무드 초안 완료','공통'],
+          ['doing','자사몰 개편 연계 콘텐츠 기획','리뉴얼 오픈 연계 콘텐츠 준비','공통'],
+          ['todo','BI/VI 확정 후 콘텐츠 기준 완성','전면 업데이트 예정','공통']
+        ]],
+        ['웹디자인팀',[
+          ['doing','자사몰 비주얼 기준 구현','리뉴얼 방향 연계','브랜드디자인'],
+          ['todo','매터니티 소재 포맷','신규 카테고리 소재','콘텐츠디자인']
+        ]],
+        ['콘텐츠팀',[
+          ['doing','매터니티 비주얼 방향 탐색','임산부 타깃 연출 방향','비주얼콘텐츠'],
+          ['todo','자사몰 리뉴얼 오픈 영상','오픈 기념 영상·SNS 소재','미디어콘텐츠'],
+          ['todo','키즈 신제품 연출컷','신규 SKU 연출 제작','비주얼콘텐츠']
+        ]]
+      ],
+      qdTasks:{
+        q1:[
+          ['콘텐츠 · 영상',[
+            ['done','브랜디드 영상 콘텐츠 방향성 정립·신규 영상 포맷 발굴 및 파일럿 제작','영상 콘텐츠 기반 마련','콘텐츠 · 영상']
+          ]]
+        ],
+        q2:[
+          ['콘텐츠 · 영상',[
+            ['done','브랜드 스토리 영상 제작 확대','브랜드 서사 중심 영상 콘텐츠 확장','콘텐츠 · 영상']
+          ]]
+        ],
+        q3:[
+          ['콘텐츠 · 영상',[
+            ['doing','채널별 숏폼/롱폼 콘텐츠 확대·브랜디드 콘텐츠 시리즈 운영·광고소재 영상 제작 확대','영상 콘텐츠 유형 다각화','콘텐츠 · 영상']
+          ]]
+        ],
+        q4:[
+          ['콘텐츠 · 영상',[
+            ['todo','영상 콘텐츠 라이브러리 구축·우수 영상 사례 분석 및 정리','콘텐츠 운영 가이드 제작, 차년도 영상 콘텐츠 전략 수립','콘텐츠 · 영상']
+          ]]
+        ]
+      }
+    }
+  },
+  monthly:[
+    {team:'BM팀',tc:'var(--brand)',tasks:[
+      {t:'BI/VI 리뉴얼 가시안 최종 검토 및 확정',s:'doing'},
+      {t:'매터니티 SKU 스펙·방향 기획 착수',s:'todo'},
+      {t:'자사몰 카테고리 구조 기획 완료',s:'todo'},
+    ]},
+    {team:'패키지팀',tc:'var(--prod)',tasks:[
+      {t:'키즈 신제품 패키지 납품 최종 확인',s:'doing'},
+      {t:'BI/VI 리뉴얼 확정 후 패키지 적용 검토',s:'todo'},
+    ]},
+    {team:'웹디자인팀',tc:'var(--sales)',tasks:[
+      {t:'자사몰 리뉴얼 UI/UX 구현 지원',s:'doing'},
+      {t:'자사몰 매터니티 카테고리 비주얼 기준 준비',s:'todo'},
+    ]},
+    {team:'콘텐츠팀',tc:'var(--cont)',tasks:[
+      {t:'자사몰 오픈 연계 콘텐츠 기획 착수',s:'doing'},
+      {t:'키즈 신제품 연출컷 기획',s:'todo'},
+    ]}
+  ]
+};
+
+/* ══════════════════════════════════
+   HELPERS
+══════════════════════════════════ */
+function bd() { return currentBrand==='jsoop'?jsoopData:antoData; }
+function toggleAcc(hd) {
+  hd.classList.toggle('open');
+  const b=hd.nextElementSibling; if(b) b.classList.toggle('open');
+}
+
+/* ══════════════════════════════════
+   RENDER
+══════════════════════════════════ */
+function setBrand(b) {
+  currentBrand=b;
+  document.getElementById('bsj').className='bs-btn jsoop'+(b==='jsoop'?' active':'');
+  document.getElementById('bsa').className='bs-btn anto'+(b==='anto'?' active':'');
+  currentQ=2; currentStrat='brand';
+  renderAll();
+}
+
+function renderAll() {
+  renderBsInfo();
+  renderBrandOv();
+  renderYearFlow();
+  renderMatrix();
+  renderDetail();
+  renderMonthly();
+  renderKpi();
+  renderGallery();
+}
+
+function renderBsInfo() {
+  const d=bd();
+  document.getElementById('bsInfo').innerHTML=SK.map(k=>`<span class="bsi">${SN[k]} ${d.stratPct[k]}%</span>`).join('');
+}
+
+function renderBrandOv() {
+  const d=bd();
+  const col=d.bv;
+  document.getElementById('brandOv').innerHTML=`
+  <div class="brand-ov">
+    <div class="ov-grid">
+      <div class="ov-premise">
+        <div class="premise-tag">${d.name} · 2026 브랜드 전략</div>
+        <div class="premise-name" style="color:${d.bc}">${d.name}</div>
+        <div class="premise-text" style="border-color:${d.bc}">${d.premise}</div>
+        <div style="font-size:12px;color:var(--sub);line-height:1.7;margin-top:2px">${d.summary.headline}</div>
+      </div>
+      <div class="sum-cards">
+        ${d.summary.cards.map(c=>`<div class="sum-card">
+          <b style="color:${d.bc}">${c.val}</b>
+          <span>${c.label}</span>
+          <small>${c.sub}</small>
+        </div>`).join('')}
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderYearFlow() {
+  const d=bd();
+  document.getElementById('yearFlow').innerHTML=d.flow.map(f=>{
+    const lbl=f.status==='done'?'완료':f.status==='doing'?'현재':'예정';
+    const cls=f.now?'now-q':f.status==='done'?'done-q':'';
+    return `<div class="yq ${cls}" style="--qc:${f.qc}">
+      <div class="yq-label"><b>${f.q}</b><span class="yq-badge" style="background:${f.qc}">${lbl}</span></div>
+      <div class="yq-title">${f.title}</div>
+      <div class="yq-items">${f.items.map(i=>`<div>${i}</div>`).join('')}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderMatrix() {
+  const d=bd();
+  const qL=['1분기','2분기','3분기','4분기'];
+  const qS=['done','done','doing','todo'];
+  const qSL=['완료','완료','현재','예정'];
+  let h='<div class="mh">전략 / 분기</div>';
+  qL.forEach((q,i)=>{ h+=`<div class="mh${i===2?' now-h':''}">${q}</div>`; });
+  SK.forEach(key=>{
+    const s=d.strategies[key];
+    h+=`<div class="ms"><i style="--ac:${s.color}"></i>${s.name}</div>`;
+    s.flow.forEach((f,i)=>{
+      const sel=key===currentStrat&&i===currentQ;
+      h+=`<div class="mc${sel?' sel':''}" onclick="selectCell('${key}',${i})">
+        <b>${f.split('·')[0].split('/')[0].trim()}</b>
+        <p>${f}</p>
+        <div class="mc-tags">
+          <span class="mtag ${qS[i]}">${qSL[i]}</span>
+          ${i===2?'<span class="mtag now">★현재</span>':''}
+        </div>
+      </div>`;
+    });
+  });
+  document.getElementById('matrix').innerHTML=h;
+}
+
+function selectCell(strat, q) {
+  currentStrat=strat; currentQ=q;
+  renderMatrix(); renderDetail();
+}
+
+function renderTask(t, ctx) {
+  const ck = t[0]==='done'?'✓':t[0]==='doing'?'◐':'';
+  if (!editMode || !ctx) {
+    return `<div class="task ${t[0]}">
+      <div class="ck">${ck}</div>
+      <div style="flex:1"><div class="t-name">${t[1]}</div><div class="t-sub">${t[2]}</div></div>
+      <div class="t-part">${t[3]}</div>
+    </div>`;
+  }
+  const C = `'${ctx.b}','${ctx.s}',${ctx.q},${ctx.g},${ctx.i}`;
+  return `<div class="task ${t[0]}">
+    <div class="ck ck-editable" title="클릭하여 상태 변경" onclick="cycleStatus(${C})">${ck}</div>
+    <div style="flex:1">
+      <div class="t-name editable" contenteditable="true"
+        onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}"
+        onblur="saveTaskField(this,${C},1)">${t[1]}</div>
+      <div class="t-sub editable" contenteditable="true"
+        onblur="saveTaskField(this,${C},2)">${t[2]}</div>
+    </div>
+    <div class="t-part">${t[3]}</div>
+  </div>`;
+}
+
+function renderTasks(tasks, ctx) {
+  return tasks.map(([grp,items], gi)=>{
+    const isC=grp.includes('공통');
+    const dc=items.filter(t=>t[0]==='done').length;
+    const dg=items.filter(t=>t[0]==='doing').length;
+    const td=items.filter(t=>t[0]==='todo').length;
+    const mkCtx = (ti) => ctx ? {b:ctx.b,s:ctx.s,q:ctx.q,g:gi,i:ti} : null;
+    if(isC) return `<div class="tg">
+      <div class="tg-hd"><div><b>${grp}</b><span class="common-tag">공통</span></div><span style="font-size:10px;color:var(--muted)">${items.length}개</span></div>
+      ${items.map((t,ti)=>renderTask(t,mkCtx(ti))).join('')}
+    </div>`;
+    return `<div class="tg">
+      <div class="acc-hd" onclick="toggleAcc(this)">
+        <div style="display:flex;align-items:center;gap:6px"><b style="font-size:12px">${grp}</b><span style="font-size:10px;color:var(--muted)">${items.length}개</span></div>
+        <div style="display:flex;gap:4px;align-items:center">
+          ${dc?`<span class="tbadge done">${dc}완료</span>`:''}
+          ${dg?`<span class="tbadge doing">${dg}진행</span>`:''}
+          ${td?`<span class="tbadge todo">${td}예정</span>`:''}
+          <span class="acc-arrow">▶</span>
+        </div>
+      </div>
+      <div class="acc-body">${items.map((t,ti)=>renderTask(t,mkCtx(ti))).join('')}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderProducts(prods) {
+  if(!prods||!prods.length) return `<div class="prod-none">해당 분기 출시 제품 없음</div>`;
+  if(prods[0].name==='해당 없음') return `<div class="prod-none">해당 분기 출시 제품 없음</div>`;
+  const smap={done:'var(--ok)',doing:'var(--warn)',todo:'var(--muted)'};
+  return `<div class="prod-grid">${prods.map(p=>`
+    <div class="prod-item">
+      <div class="prod-dot" style="background:${smap[p.s]||'var(--muted)'}"></div>
+      <div><div class="pi-name">${p.name} <span style="font-weight:900;color:${smap[p.s]}">${p.count}</span></div><div class="pi-meta">${p.month}</div></div>
+    </div>`).join('')}</div>`;
+}
+
+function renderDetail() {
+  const d=bd();
+  const s=d.strategies[currentStrat];
+  const qNum=currentQ+1;
+  const qd=s.qd['q'+qNum];
+  const isNow=qd.status==='doing';
+  const isDone=qd.status==='done';
+  const isTodo=qd.status==='todo';
+  document.getElementById('detailGrid').style.display='grid';
+
+  let reviewHtml='';
+  if(isNow) reviewHtml+=`<div class="qd-now-badge">★ 현재 진행 중인 분기</div>`;
+  reviewHtml+=`<div class="rv-grid">
+    <div class="rv-card"><h4>달성목표</h4><p>${qd.goal}</p></div>
+    <div class="rv-card"><h4>${isDone?'달성결과':'진행 현황'}</h4><p>${qd.result}</p></div>
+  </div>`;
+  if(qd.kpi&&qd.kpi.length) {
+    reviewHtml+=`<div style="margin-top:8px">${qd.kpi.map(k=>`<div class="kpi-row"><b>${k[0]}</b><span>${k[1]}</span></div>`).join('')}</div>`;
+  }
+  // Product launch
+  reviewHtml+=`<div class="prod-launch"><div class="prod-launch-hd">제품 출시 현황</div>${renderProducts(qd.products)}</div>`;
+
+  if(isDone&&qd.good&&qd.good.length) {
+    reviewHtml+=`<div class="rv-grid" style="margin-top:8px">
+      <div class="rv-card good"><h4>✓ 잘된 점</h4><ul>${qd.good.map(g=>`<li>${g}</li>`).join('')}</ul></div>
+      <div class="rv-card imp"><h4>△ 개선점</h4><ul>${qd.imp.map(i=>`<li>${i}</li>`).join('')}</ul></div>
+    </div>`;
+    if(qd.carry&&qd.carry.length) reviewHtml+=`<div class="rv-grid" style="margin-top:8px"><div class="rv-card carry wide"><h4>→ 이월과제</h4><ul>${qd.carry.map(c=>`<li>${c}</li>`).join('')}</ul></div></div>`;
+  } else if(isTodo) {
+    reviewHtml+=`<div class="todo-box">아직 시작 전인 분기입니다. 실행 후 리뷰를 기록합니다.</div>`;
+  } else if(isNow) {
+    reviewHtml+=`<div class="todo-box" style="border-color:rgba(255,179,78,.3);color:var(--warn)">분기 완료 후 잘된 점·개선점·이월과제를 기록합니다.</div>`;
+  }
+
+  const pctBar=`<div style="margin-top:6px"><div class="pbar"><div style="width:${s.pct}%;background:${s.color}"></div></div></div>`;
+  document.getElementById('detailGrid').innerHTML=`
+    <div class="panel">
+      <div class="panel-hd">
+        <div><h3 style="color:${s.color}">${s.name} · ${qNum}분기</h3><p style="font-size:11px;color:var(--muted);margin-top:3px">${qd.phase}</p><p style="font-size:11px;color:var(--sub);margin-top:4px;line-height:1.6">${s.desc}</p></div>
+        <span class="pct-badge" style="color:${s.color}">${s.pct}%</span>
+      </div>
+      ${pctBar}
+      <div style="margin-top:12px">${renderTasks(getLiveQdTasks(currentBrand,currentStrat,qNum),{b:currentBrand,s:currentStrat,q:qNum})}</div>
+    </div>
+    <div class="panel">
+      <div class="panel-hd"><h3>분기 리뷰 · ${qNum}Q</h3></div>
+      ${reviewHtml}
+    </div>`;
+}
+
+function renderMonthly() {
+  const d=bd();
+  document.getElementById('monthTitle').textContent='7월 · '+d.name+' 팀별 필수 이행 과제';
+  document.getElementById('monthlyGrid').innerHTML=d.monthly.map(mt=>`
+    <div class="mt-team">
+      <div class="mt-team-hd" style="--tc:${mt.tc}">
+        <div style="width:8px;height:8px;border-radius:50%;background:${mt.tc};flex-shrink:0"></div>
+        <b>${mt.team}</b>
+        <span style="color:${mt.tc}">${mt.tasks.length}개</span>
+      </div>
+      ${mt.tasks.map(t=>`<div class="mt-item">
+        <div class="mt-dot" style="background:${t.s==='doing'?'var(--warn)':t.s==='done'?'var(--ok)':'var(--muted)'}"></div>
+        <span>${t.t}</span>
+      </div>`).join('')}
+    </div>`).join('');
+}
+
+function renderKpi() {
+  const d=bd();
+  const lkpi=getLiveKpi();
+  document.getElementById('kpiTitle').textContent='KPI 종합지표';
+  document.getElementById('kpiBrand').textContent=d.name;
+  if(editMode){
+    document.getElementById('kpiOverall').innerHTML=`<input type="number" min="0" max="100" value="${lkpi.overall}" onchange="saveKpiOverall(this.value)" style="width:54px;background:none;border:none;border-bottom:1px solid var(--brand);color:inherit;font-size:inherit;font-weight:inherit;font-family:inherit;outline:none;text-align:center"/>%`;
+  } else {
+    document.getElementById('kpiOverall').textContent=lkpi.overall+'%';
+  }
+  document.getElementById('kpiOverall').style.color=d.bc;
+  document.getElementById('stratBars').innerHTML=SK.map(k=>`
+    <div class="strat-bar">
+      <div class="sb-row"><span class="sb-name">${SN[k]}</span>
+        <span class="sb-pct" style="color:${SC[k]}">${editMode
+          ?`<input type="number" min="0" max="100" value="${lkpi.stratPct[k]}" onchange="saveKpiStrat('${k}',this.value)" style="width:40px;background:none;border:none;border-bottom:1px solid ${SC[k]};color:${SC[k]};font-size:11px;font-weight:800;font-family:inherit;outline:none;text-align:center"/>%`
+          :lkpi.stratPct[k]+'%'
+        }</span>
+      </div>
+      <div class="sb-track"><div class="sb-fill" style="width:${lkpi.stratPct[k]}%;background:${SC[k]}"></div></div>
+    </div>`).join('');
+  const ps=d.prodStats;
+  document.getElementById('prodStats').innerHTML=`
+    <div class="stat-card"><b style="color:var(--ok)">${ps.launched}</b><span>출시 완료</span></div>
+    <div class="stat-card"><b style="color:var(--warn)">${ps.doing}</b><span>개발 진행</span></div>
+    <div class="stat-card"><b style="color:var(--muted)">${ps.planned}</b><span>출시 예정</span></div>`;
+  document.getElementById('keyStatus').innerHTML=d.keyStatus.map(s=>`
+    <div class="chk-item"><div class="chk-dot" style="background:var(--brand)"></div><span>${s}</span></div>`).join('');
+  document.getElementById('checkpoints').innerHTML=d.checkpoints.map(c=>`
+    <div class="chk-item"><div class="chk-dot" style="background:${c.c}"></div><span>${c.t}</span></div>`).join('');
+}
+
+/* ══════════════════════════════════
+   EDIT MODE ENGINE
+══════════════════════════════════ */
+let editMode = false;
+let overrides = {};
+const SAVE_KEY = 'brandOS_v8';
+let _saveTimer = null;
+
+/* ── Load overrides ── */
+(function initOverrides(){
+  // 1. From embedded <script id="savedOverrides"> (baked in via export)
+  try {
+    const el = document.getElementById('savedOverrides');
+    if (el && el.textContent.trim() !== '{}') {
+      overrides = JSON.parse(el.textContent);
+    }
+  } catch(e){}
+  // 2. localStorage wins over embedded (live edits from this browser)
+  try {
+    const ls = localStorage.getItem(SAVE_KEY);
+    if (ls) overrides = JSON.parse(ls);
+  } catch(e){}
+})();
+
+/* ── Auto-save ── */
+function autoSave(){
+  clearTimeout(_saveTimer);
+  _saveTimer = setTimeout(()=>{
+    try {
+      localStorage.setItem(SAVE_KEY, JSON.stringify(overrides));
+      const ind = document.getElementById('saveIndicator');
+      if(ind){ ind.textContent='저장됨 ✓'; ind.style.color='var(--ok)';
+        setTimeout(()=>{ ind.textContent='자동저장 켜짐'; ind.style.color=''; },2000); }
+    } catch(e){}
+  }, 400);
+}
+
+/* ── Toggle edit mode ── */
+function toggleEditMode(){
+  editMode = !editMode;
+  document.body.classList.toggle('edit-mode', editMode);
+  const btn = document.getElementById('editToggleBtn');
+  if(editMode){
+    btn.textContent='✓ 편집 완료';
+    btn.classList.add('et-active');
+  } else {
+    btn.textContent='✏️ 편집 모드';
+    btn.classList.remove('et-active');
+  }
+  renderAll();
+}
+
+/* ── Live data accessors ── */
+function getLiveQdTasks(brand, strat, qNum){
+  const key = 'q'+qNum;
+  if(overrides.qdTasks && overrides.qdTasks[brand] && overrides.qdTasks[brand][strat]
+     && overrides.qdTasks[brand][strat][key]){
+    return overrides.qdTasks[brand][strat][key];
+  }
+  const d = brand==='jsoop' ? jsoopData : antoData;
+  return d.strategies[strat].qdTasks ? d.strategies[strat].qdTasks[key] : d.strategies[strat].tasks;
+}
+
+function getLiveKpi(){
+  const d = bd();
+  return {
+    overall: (overrides.kpi && overrides.kpi[currentBrand] && overrides.kpi[currentBrand].overall != null)
+              ? overrides.kpi[currentBrand].overall : d.overall,
+    stratPct: (overrides.kpi && overrides.kpi[currentBrand] && overrides.kpi[currentBrand].stratPct)
+              ? {...d.stratPct, ...overrides.kpi[currentBrand].stratPct} : {...d.stratPct}
+  };
+}
+
+function getLiveGallery(brand){
+  return (overrides.weeklyImages && overrides.weeklyImages[brand] != null)
+    ? overrides.weeklyImages[brand]
+    : (weeklyImages[brand] || []);
+}
+
+/* ── Ensure override structures ── */
+function ensureQd(b, s, q){
+  if(!overrides.qdTasks) overrides.qdTasks = {};
+  if(!overrides.qdTasks[b]) overrides.qdTasks[b] = {};
+  if(!overrides.qdTasks[b][s]) overrides.qdTasks[b][s] = {};
+  const key = 'q'+q;
+  if(!overrides.qdTasks[b][s][key]){
+    const d = b==='jsoop' ? jsoopData : antoData;
+    const orig = d.strategies[s].qdTasks;
+    const src = orig ? orig[key] : d.strategies[s].tasks;
+    overrides.qdTasks[b][s][key] = JSON.parse(JSON.stringify(src || []));
+  }
+}
+
+/* ── Task editing ── */
+function cycleStatus(b, s, q, g, i){
+  if(!editMode) return;
+  ensureQd(b, s, q);
+  const t = overrides.qdTasks[b][s]['q'+q][g][1][i];
+  const cycle = {done:'doing', doing:'todo', todo:'done'};
+  t[0] = cycle[t[0]] || 'todo';
+  autoSave();
+  renderDetail();
+}
+
+function saveTaskField(el, b, s, q, g, i, field){
+  ensureQd(b, s, q);
+  const text = el.innerText.replace(/<[^>]*>/g,'').trim();
+  overrides.qdTasks[b][s]['q'+q][g][1][i][field] = text;
+  autoSave();
+}
+
+/* ── KPI editing ── */
+function saveKpiOverall(val){
+  const n = parseInt(val);
+  if(isNaN(n)||n<0||n>100) return;
+  if(!overrides.kpi) overrides.kpi = {};
+  if(!overrides.kpi[currentBrand]) overrides.kpi[currentBrand] = {};
+  overrides.kpi[currentBrand].overall = n;
+  autoSave();
+}
+
+function saveKpiStrat(k, val){
+  const n = parseInt(val);
+  if(isNaN(n)||n<0||n>100) return;
+  if(!overrides.kpi) overrides.kpi = {};
+  if(!overrides.kpi[currentBrand]) overrides.kpi[currentBrand] = {};
+  if(!overrides.kpi[currentBrand].stratPct) overrides.kpi[currentBrand].stratPct = {};
+  overrides.kpi[currentBrand].stratPct[k] = n;
+  autoSave();
+}
+
+/* ── Gallery editing ── */
+let _gmBrand = null;
+let _gmWeekIdx = null;
+
+function showGalleryModal(brand, weekIdx){
+  _gmBrand = brand;
+  _gmWeekIdx = weekIdx;
+  const isNew = weekIdx === null;
+  document.getElementById('gmTitle').textContent = isNew ? '새 주차 + 이미지 추가' : '이미지 추가';
+  const lbl = document.getElementById('gmLabel');
+  const dt = document.getElementById('gmDate');
+  if(!isNew){
+    const week = getLiveGallery(brand)[weekIdx];
+    lbl.value = week.label || '';
+    dt.value = week.date || '';
+    lbl.disabled = true; dt.disabled = true;
+  } else {
+    lbl.value=''; dt.value='';
+    lbl.disabled=false; dt.disabled=false;
+  }
+  document.getElementById('gmUrl').value='';
+  document.getElementById('gmItemTitle').value='';
+  document.getElementById('gmItemDesc').value='';
+  document.getElementById('galleryModal').style.display='flex';
+}
+
+function closeGalleryModal(){
+  document.getElementById('galleryModal').style.display='none';
+  _gmBrand=null; _gmWeekIdx=null;
+}
+
+function extractGdriveId(url){
+  const m = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+  if(m) return m[1];
+  if(/^[a-zA-Z0-9_-]{15,}$/.test(url.trim())) return url.trim();
+  return url.trim();
+}
+
+function confirmAddImage(){
+  const url = document.getElementById('gmUrl').value.trim();
+  const title = document.getElementById('gmItemTitle').value.trim();
+  const desc = document.getElementById('gmItemDesc').value.trim();
+  const label = document.getElementById('gmLabel').value.trim();
+  const date = document.getElementById('gmDate').value.trim();
+  if(!url){ alert('Google Drive 링크를 입력해주세요.'); return; }
+  if(!title){ alert('이미지 제목을 입력해주세요.'); return; }
+  if(_gmWeekIdx===null && !label){ alert('주차 이름을 입력해주세요.'); return; }
+  const id = extractGdriveId(url);
+  const item = {title, id, desc};
+  if(!overrides.weeklyImages) overrides.weeklyImages={};
+  if(!overrides.weeklyImages[_gmBrand]){
+    overrides.weeklyImages[_gmBrand] = JSON.parse(JSON.stringify(weeklyImages[_gmBrand]||[]));
+  }
+  if(_gmWeekIdx !== null){
+    overrides.weeklyImages[_gmBrand][_gmWeekIdx].items.unshift(item);
+  } else {
+    overrides.weeklyImages[_gmBrand].unshift({week:'new-'+Date.now(),label,date,items:[item]});
+  }
+  autoSave();
+  closeGalleryModal();
+  renderGallery();
+}
+
+function deleteGalleryItem(brand, wi, ii){
+  if(!confirm('이 이미지를 삭제할까요?')) return;
+  if(!overrides.weeklyImages) overrides.weeklyImages={};
+  if(!overrides.weeklyImages[brand]){
+    overrides.weeklyImages[brand] = JSON.parse(JSON.stringify(getLiveGallery(brand)));
+  }
+  overrides.weeklyImages[brand][wi].items.splice(ii,1);
+  if(!overrides.weeklyImages[brand][wi].items.length){
+    overrides.weeklyImages[brand].splice(wi,1);
+  }
+  autoSave();
+  renderGallery();
+}
+
+/* ── Export HTML ── */
+function exportHTML(){
+  const src = document.documentElement.outerHTML;
+  const updated = src.replace(
+    /<script id="savedOverrides" type="application\/json">[\s\S]*?<\/script>/,
+    '<script id="savedOverrides" type="application/json">'+JSON.stringify(overrides)+'<\/script>'
+  );
+  const blob = new Blob([updated],{type:'text/html;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'JSOOP_Brand_OS_v8.html';
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a);
+  setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+}
+
+/* ── Reset ── */
+function resetData(){
+  if(!confirm('모든 수정사항을 초기화할까요?\n(저장된 편집 내용이 모두 삭제됩니다)')) return;
+  localStorage.removeItem(SAVE_KEY);
+  overrides = {};
+  autoSave();
+  renderAll();
+}
+
+renderAll();
+
+/* ══════════════════════════════════
+   WEEKLY GALLERY DATA
+   ──────────────────────────────────
+   이미지 추가 방법:
+   1. 구글드라이브에 이미지 업로드
+   2. 우클릭 → 공유 → '링크 있는 모든 사용자' 설정
+   3. 공유 링크에서 파일 ID 복사:
+      https://drive.google.com/file/d/[파일ID]/view?usp=sharing
+   4. 아래 해당 브랜드·주차에 { title, id, desc } 추가
+══════════════════════════════════ */
+const weeklyImages = {
+  jsoop: [
+    // 예시 (실제 파일 ID로 교체하세요):
+    // {
+    //   week: '2026-W27',
+    //   label: '7월 1주차',
+    //   date: '6/30 – 7/6',
+    //   items: [
+    //     { title: '바이오피엘 패키지 시안', id: '1aBcDeFgHiJkLmNoPqRsTuVwXyZ_abc12', desc: '1차 시안 3종' },
+    //     { title: '리아비책 촬영컷', id: '2bCdEfGhIjKlMnOpQrStUvWxYz_def34', desc: '제품컷 세트' },
+    //   ]
+    // },
+  ],
+  anto: [
+    // 예시:
+    // {
+    //   week: '2026-W27',
+    //   label: '7월 1주차',
+    //   date: '6/30 – 7/6',
+    //   items: [
+    //     { title: '자사몰 UI 시안', id: '3cDeFgHiJkLmNoPqRsTuVwXy_ghi56', desc: '메인 리뉴얼 시안' },
+    //   ]
+    // },
+  ]
+};
+
+/* Google Drive 썸네일 URL 생성 */
+function gdThumb(id, size='w400') {
+  return `https://drive.google.com/thumbnail?id=${id}&sz=${size}`;
+}
+function gdFull(id) {
+  return `https://drive.google.com/thumbnail?id=${id}&sz=w1600`;
+}
+
+/* Lightbox 상태 */
+let lbItems = [];
+let lbIdx = 0;
+
+function openLB(items, idx) {
+  lbItems = items;
+  lbIdx = idx;
+  setLB(idx);
+  document.getElementById('lightbox').style.display = 'flex';
+}
+function setLB(idx) {
+  const it = lbItems[idx];
+  document.getElementById('lbImg').src = gdFull(it.id);
+  document.getElementById('lbTitle').textContent = it.title;
+  document.getElementById('lbDesc').textContent = it.desc || '';
+}
+function lbNav(dir) {
+  lbIdx = (lbIdx + dir + lbItems.length) % lbItems.length;
+  setLB(lbIdx);
+}
+function closeLB(e) {
+  if (e.target.id === 'lightbox') document.getElementById('lightbox').style.display = 'none';
+}
+document.addEventListener('keydown', e => {
+  const lb = document.getElementById('lightbox');
+  if (lb.style.display === 'none') return;
+  if (e.key === 'Escape') lb.style.display = 'none';
+  if (e.key === 'ArrowLeft') lbNav(-1);
+  if (e.key === 'ArrowRight') lbNav(1);
+});
+
+/* 갤러리 렌더링 */
+function renderGallery() {
+  const brand = currentBrand;
+  const data = weeklyImages[brand] || [];
+  const container = document.getElementById('galleryContainer');
+  if (!container) return;
+
+  if (!data.length) {
+    container.innerHTML = `
+      <div class="gallery-empty">
+        <span>🖼️</span>
+        이미지를 추가하려면 HTML 파일의 <code>weeklyImages.${brand}</code> 배열에<br>
+        구글드라이브 파일 ID를 넣어주세요.
+      </div>`;
+    return;
+  }
+
+  container.innerHTML = data.map(week => {
+    const allItems = week.items;
+    const cards = allItems.map((it, idx) => `
+      <div class="gal-card" onclick="openLB(${JSON.stringify(allItems).replace(/'/g,"&#39;")},${idx})">
+        <img src="${gdThumb(it.id)}" alt="${it.title}" loading="lazy"
+             onerror="this.parentNode.innerHTML='<div class=\\'gal-loading\\'>이미지 로드 실패<br><span style=\\'font-size:10px;opacity:.6\\'>드라이브 공유 설정 확인</span></div>'"/>
+        <div class="gal-overlay">
+          <div class="gal-title">${it.title}</div>
+          ${it.desc ? `<div class="gal-desc">${it.desc}</div>` : ''}
+        </div>
+      </div>`).join('');
+
+    return `
+      <div class="week-group">
+        <div class="week-label">${week.label} <span style="color:var(--muted);font-weight:400;font-size:10px">${week.date || ''}</span></div>
+        <div class="gallery-grid">${cards}</div>
+      </div>`;
+  }).join('');
+}
+
+</script>
+
+<!-- ── Edit Toolbar ── -->
+<div class="edit-toolbar">
+  <div class="et-left">
+    <button id="editToggleBtn" class="et-btn" onclick="toggleEditMode()">✏️ 편집 모드</button>
+    <span id="saveIndicator" class="et-ind">자동저장 켜짐</span>
+  </div>
+  <div class="et-right">
+    <button class="et-btn et-export" onclick="exportHTML()">⬇ HTML 내보내기</button>
+    <div class="et-divider"></div>
+    <button class="et-btn et-reset" onclick="resetData()">↩ 초기화</button>
+  </div>
+</div>
+
+<!-- ── Gallery Add Modal ── -->
+<div id="galleryModal" class="gm-overlay" style="display:none" onclick="if(event.target.id===&#39;galleryModal&#39;)closeGalleryModal()">
+  <div class="gm-box" onclick="event.stopPropagation()">
+    <div class="gm-hd">
+      <h3 id="gmTitle">이미지 추가</h3>
+      <button class="gm-close" onclick="closeGalleryModal()">✕ 닫기</button>
+    </div>
+    <div class="gm-body">
+      <div class="gm-field" id="gmWeekFields">
+        <label>주차 이름</label>
+        <input id="gmLabel" type="text" placeholder="예: 7월 2주차">
+      </div>
+      <div class="gm-field" id="gmDateField">
+        <label>날짜 범위 (선택)</label>
+        <input id="gmDate" type="text" placeholder="예: 7/7 – 7/13">
+      </div>
+      <div class="gm-sep">이미지 정보</div>
+      <div class="gm-field">
+        <label>Google Drive 공유 링크</label>
+        <input id="gmUrl" type="text" placeholder="https://drive.google.com/file/d/.../view">
+        <p class="gm-hint">파일 우클릭 → 공유 → '링크 있는 모든 사용자' 설정 후 링크 붙여넣기</p>
+      </div>
+      <div class="gm-field">
+        <label>이미지 제목</label>
+        <input id="gmItemTitle" type="text" placeholder="예: 바이오피엘 패키지 1차 시안">
+      </div>
+      <div class="gm-field">
+        <label>설명 (선택)</label>
+        <input id="gmItemDesc" type="text" placeholder="예: 3종 비교안">
+      </div>
+    </div>
+    <div class="gm-footer">
+      <button class="gm-btn-cancel" onclick="closeGalleryModal()">취소</button>
+      <button class="gm-btn-save" onclick="confirmAddImage()">추가하기</button>
+    </div>
+  </div>
+</div>
+
+
+
+</body></html>
